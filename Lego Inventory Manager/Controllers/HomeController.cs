@@ -1,4 +1,4 @@
-﻿using Lego_Inventory_Manager.Models;
+﻿using LegoInventoryManager.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lego Inventory Manager", "Lego Inventory Manager\Lego Inventory Manager.csproj", "{0CBBBD07-5EBD-44B2-BBF4-77A3316FA6D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegoInventoryManager", "Lego Inventory Manager\LegoInventoryManager.csproj", "{0CBBBD07-5EBD-44B2-BBF4-77A3316FA6D6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegoInventoryTests", "LegoInventoryTests\LegoInventoryTests.csproj", "{2FB98A9C-763B-49C0-ABA2-24CE3EE63343}"
 EndProject

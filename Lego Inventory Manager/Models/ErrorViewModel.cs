@@ -1,4 +1,4 @@
-namespace Lego_Inventory_Manager.Models
+namespace LegoInventoryManager.Models
 {
     public class ErrorViewModel
     {

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lego Inventory Manager", "Lego Inventory Manager\Lego Inventory Manager.csproj", "{0CBBBD07-5EBD-44B2-BBF4-77A3316FA6D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegoInventoryTests", "LegoInventoryTests\LegoInventoryTests.csproj", "{2FB98A9C-763B-49C0-ABA2-24CE3EE63343}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CBBBD07-5EBD-44B2-BBF4-77A3316FA6D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CBBBD07-5EBD-44B2-BBF4-77A3316FA6D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CBBBD07-5EBD-44B2-BBF4-77A3316FA6D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CBBBD07-5EBD-44B2-BBF4-77A3316FA6D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FB98A9C-763B-49C0-ABA2-24CE3EE63343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FB98A9C-763B-49C0-ABA2-24CE3EE63343}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FB98A9C-763B-49C0-ABA2-24CE3EE63343}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FB98A9C-763B-49C0-ABA2-24CE3EE63343}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E66E757F-5208-476C-9B01-75DB264B9A58}
+	EndGlobalSection
+EndGlobal

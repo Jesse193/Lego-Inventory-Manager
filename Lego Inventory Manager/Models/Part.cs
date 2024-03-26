@@ -1,4 +1,4 @@
-﻿namespace Lego_Inventory_Manager.Models
+﻿namespace LegoInventoryManager.Models
 {
     public class Part
     {
@@ -7,5 +7,6 @@
         public string Color { get; set; }
         public int PartNumber { get; set; }
         public int Qty { get; set; }
+        public List<Set> Sets { get; set; } = new List<Set>();
     }
 }

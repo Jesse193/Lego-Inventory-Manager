@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using LegoInventoryManager.DataAccess;
 using LegoInventoryManager.Models;
 
-namespace Lego_Inventory_Manager.Controllers
+namespace LegoInventoryManager.Controllers
 {
     public class SetsController : Controller
     {

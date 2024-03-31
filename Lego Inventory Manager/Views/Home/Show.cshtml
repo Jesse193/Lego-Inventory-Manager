@@ -1,8 +1,4 @@
-﻿@model LegoModel
-
-@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model RootObject
 
 <div>
     <h3 class="display-4">Lego Part Finder</h3>
@@ -12,7 +8,7 @@
                 <tr>
                     <td>Part Number: </td>
                     <td><input type="text" id="partNumber" name="partNumber" /></td>
-                   
+
                     <td><input type="submit" value="Submit" /></td>
                 </tr>
             </table>
@@ -24,18 +20,18 @@
         <table class="table table-bordered table-striped table-sm">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Part Number</th>
+                    <th>Color</th>
                     <th>Image</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => Model.Name)</td>
-                    <td>@Html.DisplayFor(modelItem => Model.PartNumber)</td>
-                    <td><img src=@Html.DisplayFor(modelItem => Model.Image) alt="Image of Lego Part"/></td>
-                    <td><button name="nameButton" id="idButton" title="Get Colors This Part Comes in" class="btn btn-secondary" onclick="location.href='@Url.Action( "Show","Home", new {  partNumber = Model.PartNumber })'">Get Colors This Part Comes In</button></td>
-                </tr>
+                @foreach (var item in Model.result)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Color)</td>
+                        <td><img src=@Html.DisplayFor(modelItem => item.Image) alt="Image of Lego Part" /></td>
+                    </tr>
+                }
             </tbody>
         </table>
     }

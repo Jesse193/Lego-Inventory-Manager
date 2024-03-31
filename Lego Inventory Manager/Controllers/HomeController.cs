@@ -20,5 +20,13 @@ namespace LegoInventoryManager.Controllers
 
             return View(part);
         }
+
+        public async Task<IActionResult> Show(string partNumber)
+        {
+            RootObject colors = new RootObject();
+            colors = await _legoApiService.GetPartColors(partNumber);
+
+            return View(colors);
+        }
     }
 }

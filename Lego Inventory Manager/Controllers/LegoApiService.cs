@@ -6,6 +6,7 @@ namespace LegoInventoryManager.Controllers
     public interface ILegoApiService
     {
         Task<LegoModel> GetPart(string partNumber);
+        Task<RootObject> GetPartColors(string partNumber);
     }
     public class LegoApiService : ILegoApiService
     {
@@ -36,6 +37,21 @@ namespace LegoInventoryManager.Controllers
                 var stringResponse = await response.Content.ReadAsStringAsync();           
 
                 result = JsonSerializer.Deserialize<LegoModel>(stringResponse);
+            }
+            return result;
+        }
+
+        public async Task<RootObject> GetPartColors(string partNumber)
+        {
+            var apiKey = _config["API_KEY"];
+            var url = string.Format($"/api/v3/lego/parts/{partNumber}/colors?key={apiKey}");
+            var result = new RootObject();
+            var response = await client.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                var stringResponse = await response.Content.ReadAsStringAsync();
+
+                result = JsonSerializer.Deserialize<RootObject>(stringResponse);
             }
             return result;
         }

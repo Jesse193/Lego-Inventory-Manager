@@ -1,3 +1,4 @@
+using LegoInventoryManager.Controllers;
 using LegoInventoryManager.DataAccess;
 using Microsoft.EntityFrameworkCore;
 
@@ -5,6 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<ILegoApiService, LegoApiService>();
+builder.Services.AddHttpClient();
+var apiKey = builder.Configuration["API_KEY"];
 
 builder.Services.AddDbContext<LegoInventoryManagerContext>(options =>
     options.UseNpgsql(builder.Configuration["DB_password"] ?? throw new InvalidOperationException("Connection string 'LegoInventoryManagerDB' not found.")).UseSnakeCaseNamingConvention());

@@ -6,6 +6,12 @@ namespace LegoInventoryManager.Models
     {
         [JsonPropertyName("part")]
         public Part Part { get; set; }
+
+        [JsonPropertyName("color")]
+        public Color Color { get; set; }
+
+        [JsonPropertyName("element_img_url")]
+        public string Image { get; set; }
     }
 
     public class Part
@@ -22,11 +28,14 @@ namespace LegoInventoryManager.Models
         [JsonPropertyName("year_to")]
         public int YearTo { get; set; }
 
-        [JsonPropertyName("part_img_url")]
-        public string Image { get; set; }
-
         [JsonPropertyName("prints")]
         public List<string> Prints { get; set; }
 
+    }
+
+    public class Color
+    {
+        [JsonPropertyName("id")]
+        public int ColorId { get; set; }
     }
 }

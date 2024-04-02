@@ -1,0 +1,42 @@
+﻿@model RootObject
+
+<div>
+    <h3 class="display-4">Lego Part Finder</h3>
+    <center>
+        <form asp-controller="Home" asp-action="Index">
+            <table>
+                <tr>
+                    <td>Part Number: </td>
+                    <td><input type="text" id="partNumber" name="partNumber" /></td>
+
+                    <td><input type="submit" value="Submit" /></td>
+                </tr>
+            </table>
+            <hr />
+        </form>
+    </center>
+    @if (Model != null)
+    {
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>Color</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.result)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Color)</td>
+                        <td><img src=@Html.DisplayFor(modelItem => item.Image) alt="Image of Lego Part" /></td>
+                        @foreach (var element in item.ElementList)
+                        {
+                            <td><button name="nameButton" id="idButton" title="Get Details of Color or to ADD to Collection" class="btn btn-secondary" onclick="location.href='@Url.Action("Show","LegoColors", new {  elementNumber = element })'">Get Details of Color or to ADD to Collection</button></td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

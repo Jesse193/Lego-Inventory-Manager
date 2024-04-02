@@ -30,14 +30,12 @@
                 </tr>
             </thead>
             <tbody>
-               
-              
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => Model.Name)</td>
-                        <td>@Html.DisplayFor(modelItem => Model.PartNumber)</td>
-                        <td><img src=@Html.DisplayFor(modelItem => Model.Image) alt="Image of Lego Part"/></td>
-                    </tr>
-               
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => Model.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => Model.PartNumber)</td>
+                    <td><img src=@Html.DisplayFor(modelItem => Model.Image) alt="Image of Lego Part"/></td>
+                    <td><button name="nameButton" id="idButton" title="Get Colors This Part Comes in" class="btn btn-secondary" onclick="location.href='@Url.Action( "Show","Home", new {  partNumber = Model.PartNumber })'">Get Colors This Part Comes In</button></td>
+                </tr>
             </tbody>
         </table>
     }

@@ -12,6 +12,7 @@ namespace LegoInventoryManager.Controllers
         Task<RootObject> GetPartColors(string partNumber);
         Task<LegoColorDetails> GetColorDetails(string elementNumber);
         Task<PartList> AddPartsToList(string userToken, string listId, string partNumber, int Quantity, int colorId);
+        Task<AllList> GetAllLists(string userToken);
     }
     public class LegoApiService : ILegoApiService
     {
@@ -102,6 +103,22 @@ namespace LegoInventoryManager.Controllers
                 Console.WriteLine(response.StatusCode);
             }
             return postData;
+        }
+
+        public async Task<AllList> GetAllLists(string userToken)
+        {
+            var apiKey = _config["API_KEY"];
+            var url = string.Format($"/api/v3/users/{userToken}/partlists/?key={apiKey}");
+            var result = new AllList();
+            var response = await client.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                var stringResponse = await response.Content.ReadAsStringAsync();
+
+                result = JsonSerializer.Deserialize<AllList>(stringResponse);
+                Console.WriteLine(response.StatusCode);
+            }
+            return result;
         }
     }
 }

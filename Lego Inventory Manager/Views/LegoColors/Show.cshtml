@@ -22,11 +22,34 @@
                     <td>@Html.DisplayFor(modelItem => Model.Part.PartNumber)</td>
                     <td>@Html.DisplayFor(modelItem => Model.Part.YearFrom)</td>
                     <td>@Html.DisplayFor(modelItem => Model.Part.YearTo)</td>
-                    <td><img src=@Html.DisplayFor(modelItem => Model.Part.Image) alt="Image of Lego Part" /></td>
+                    <td><img src=@Html.DisplayFor(modelItem => Model.Image) alt="Image of Lego Part" /></td>
                     @foreach (var print in Model.Part.Prints)
                     {
                         <td>@Html.DisplayFor(modelItem => print)</td>
                     }
+
+					<td>
+                        <form asp-controller="PartLists" asp-action="Post">
+                            <table>
+                                <tr>
+                                    <td>User Token:</td>
+                                    <td><input type="text" id="userToken" name="userToken" /></td>
+
+                                    <td>List ID:</td>
+                                    <td><input type="text" id="ListId" name="ListId" /></td>
+
+                                    <td>Quantity:</td>
+                                    <td><input type="text" id="Quantity" name="Quantity" /></td>
+
+                                    <td><input type="hidden" id="partNumber" name="partNumber" value="@Model.Part.PartNumber" /></td>
+                                    <td><input type="hidden" id="colorId" name="ColorId" value="@Model.Color.ColorId" /></td>
+
+
+                                    <td><input type="submit" value="Submit" /></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </td>
                 </tr>
             </tbody>
         </table>

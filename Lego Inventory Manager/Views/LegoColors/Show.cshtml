@@ -1,0 +1,34 @@
+﻿@model LegoColorDetails
+
+<div>
+    <h3 class="display-4">Color Details</h3>
+
+    @if (Model != null)
+    {
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Part Number</th>
+                    <th>Year From</th>
+                    <th>Year To</th>
+                    <th>Image</th>
+                    <th>Prints</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => Model.Part.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => Model.Part.PartNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => Model.Part.YearFrom)</td>
+                    <td>@Html.DisplayFor(modelItem => Model.Part.YearTo)</td>
+                    <td><img src=@Html.DisplayFor(modelItem => Model.Part.Image) alt="Image of Lego Part" /></td>
+                    @foreach (var print in Model.Part.Prints)
+                    {
+                        <td>@Html.DisplayFor(modelItem => print)</td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+    }
+</div>

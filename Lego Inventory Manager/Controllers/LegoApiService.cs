@@ -1,5 +1,8 @@
 ﻿using LegoInventoryManager.Models;
+using Microsoft.Extensions.Hosting;
+using System.IO;
 using System.Text.Json;
+using System.Text;
 
 namespace LegoInventoryManager.Controllers
 {
@@ -7,6 +10,8 @@ namespace LegoInventoryManager.Controllers
     {
         Task<LegoModel> GetPart(string partNumber);
         Task<RootObject> GetPartColors(string partNumber);
+        Task<LegoColorDetails> GetColorDetails(string elementNumber);
+        Task<PartList> AddPartsToList(string userToken, string listId, string partNumber, int Quantity, int colorId);
     }
     public class LegoApiService : ILegoApiService
     {
@@ -54,6 +59,49 @@ namespace LegoInventoryManager.Controllers
                 result = JsonSerializer.Deserialize<RootObject>(stringResponse);
             }
             return result;
+        }
+
+        public async Task<LegoColorDetails> GetColorDetails(string elementNumber)
+        {
+            var apiKey = _config["API_KEY"];
+            var url = string.Format($"/api/v3/lego/elements/{elementNumber}/?key={apiKey}");
+            var result = new LegoColorDetails();
+            var response = await client.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                var stringResponse = await response.Content.ReadAsStringAsync();
+
+                result = JsonSerializer.Deserialize<LegoColorDetails>(stringResponse);
+            }
+            return result;
+        }
+
+        public async Task<PartList> AddPartsToList(string userToken, string listId, string partNumber, int Quantity, int colorId)
+        {
+            var apiKey = _config["API_KEY"];
+            var url = string.Format($"/api/v3/users/{userToken}/partlists/{listId}/parts/?key={apiKey}");
+            var postData = new PartList
+            {
+                PartNumber = partNumber,
+                ColorId = colorId,
+                Quantity = Quantity
+            };
+            var json = JsonSerializer.Serialize(postData);
+            Console.WriteLine(json);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = client.PostAsync(url, content).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var responseContent = response.Content.ReadAsStringAsync().Result;
+                var postResponse = JsonSerializer.Deserialize<PostResponse>(responseContent);
+                Console.WriteLine(response.StatusCode);
+            }
+            else
+            {
+                Console.WriteLine(response.StatusCode);
+            }
+            return postData;
         }
     }
 }

@@ -9,6 +9,7 @@ namespace LegoInventoryManager.Models
 
         [JsonPropertyName("part_num")]
         public string PartNumber { get; set; }
+
         [JsonPropertyName("part_img_url")]
         public string Image { get; set; }
     }

@@ -13,29 +13,4 @@ namespace LegoInventoryManager.Models
         [JsonPropertyName("element_img_url")]
         public string Image { get; set; }
     }
-
-    public class Part
-    {
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [JsonPropertyName("part_num")]
-        public string PartNumber { get; set; }
-
-        [JsonPropertyName("year_from")]
-        public int YearFrom { get; set; }
-
-        [JsonPropertyName("year_to")]
-        public int YearTo { get; set; }
-
-        [JsonPropertyName("prints")]
-        public List<string> Prints { get; set; }
-
-    }
-
-    public class Color
-    {
-        [JsonPropertyName("id")]
-        public int ColorId { get; set; }
-    }
 }

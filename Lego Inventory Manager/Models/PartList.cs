@@ -12,5 +12,8 @@ namespace LegoInventoryManager.Models
 
         [JsonPropertyName("quantity")]
         public int Quantity {  get; set; }
+
+        [JsonPropertyName("list_id")]
+        public string ListId { get; set; }
     }
 }

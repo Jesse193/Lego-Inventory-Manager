@@ -29,6 +29,23 @@
                         <td>@Html.DisplayFor(modelItem => result.Part.Name)</td>
                         <td>@Html.DisplayFor(modelItem => result.Color.Name)</td>
                         <td><img src=@Html.DisplayFor(modelItem => result.Part.ImageUrl) alt="Image of Lego Part" /></td>
+
+                        <h3 class="display-4">Edit Part</h3>
+                        <tr>
+                            <form asp-controller="PartLists" asp-action="Put">
+                                <td>User Token: </td>
+                                <td><input type="text" id="userToken" name="userToken" /></td>
+
+                                <td>Quantity</td>
+                                <td><input type="number" id="Quantity" name="Quantity" /></td>
+
+                                <input type="hidden" id="partNumber" name="partNumber" value="@result.Part.PartNumber" />
+                                <input type="hidden" id="colorId" name="colorId" value="@result.Color.ColorId" />
+                                <input type="hidden" id="listId" name="listId" value="@result.ListId" />
+
+                                <td><input type="submit" value="Submit" /></td>
+                            </form>
+                        </tr>
                         <br>
                     }
                 </tr>

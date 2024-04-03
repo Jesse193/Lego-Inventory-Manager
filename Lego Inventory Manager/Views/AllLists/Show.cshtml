@@ -1,0 +1,38 @@
+﻿@model MyList
+
+<div>
+    <h3 class="display-4">List Details</h3>
+
+    @if (Model != null)
+    {
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>Number Of Parts</th>
+                    <th>Part</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => Model.NumberParts)</td>
+                    @foreach (var result in Model.data)
+                    {
+                        <tr>
+                            <th>Quantity</th>
+                            <th>Part Number</th>
+                            <th>Part Name</th>
+                            <th>Color</th>
+                        </tr>
+                        <td>@Html.DisplayFor(modelItem => result.Quantity)</td>
+
+                        <td>@Html.DisplayFor(modelItem => result.Part.PartNumber)</td>
+                        <td>@Html.DisplayFor(modelItem => result.Part.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => result.Color.Name)</td>
+                        <td><img src=@Html.DisplayFor(modelItem => result.Part.ImageUrl) alt="Image of Lego Part" /></td>
+                        <br>
+                    }
+                </tr>
+            </tbody>
+        </table>
+    }
+</div>

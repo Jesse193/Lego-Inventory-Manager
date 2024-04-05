@@ -28,7 +28,6 @@ namespace LegoInventoryManager.Controllers
 			return View(myParts);
 		}
 
-
         public async Task<IActionResult> Put(string colorId, string userToken, string listId, string partNumber, int Quantity)
         {
             PartList part = new PartList();

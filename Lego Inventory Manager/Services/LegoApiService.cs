@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Text;
 using System;
 using Microsoft.AspNetCore.Mvc;
+using System.Xml.Linq;
 
 namespace LegoInventoryManager.Services
 {
@@ -20,6 +21,7 @@ namespace LegoInventoryManager.Services
         Task<List> CreateNewList(string userToken, string Name);
         Task<Set> GetSets(string searchTerm);
         Task<SetShow> SetDetails(string setNumber);
+        Task<SetList> CreateNewSetList(string userToken, string Name);
 
     }
     public class LegoApiService : ILegoApiService
@@ -222,6 +224,30 @@ namespace LegoInventoryManager.Services
                 Console.WriteLine(response.StatusCode);
             }
             return result;
+        }
+
+        public async Task<SetList> CreateNewSetList(string userToken, string Name)
+        {
+            var apiKey = _config["API_KEY"];
+            var url = string.Format($"/api/v3//users/{userToken}/setlists/?key={apiKey}");
+            var postData = new SetList
+            {
+                Name = Name
+            };
+            var json = JsonSerializer.Serialize(postData);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = client.PostAsync(url, content).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var responseContent = response.Content.ReadAsStringAsync().Result;
+                var postResponse = JsonSerializer.Deserialize<PostResponse>(responseContent);
+            }
+            else
+            {
+                Console.WriteLine(response.StatusCode);
+            }
+            return postData;
         }
     }
 }

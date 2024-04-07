@@ -20,5 +20,13 @@ namespace LegoInventoryManager.Controllers
 
             return View(getSets);
         }
+
+        public async Task<IActionResult> Show(string setNumber)
+        {
+            Set Set = new Set();
+            Set = await _legoApiService.SetDetails(setNumber);
+
+            return View(Set);
+        }
     }
 }

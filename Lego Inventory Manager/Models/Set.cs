@@ -11,7 +11,7 @@ namespace LegoInventoryManager.Models
     public class SetResults
     {
         [JsonPropertyName("set_num")]
-        public string SetNum { get; set; }
+        public string SetNumber { get; set; }
 
         [JsonPropertyName("name")]
         public string Name { get; set; }

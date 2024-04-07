@@ -17,6 +17,8 @@ namespace LegoInventoryManager.Services
         Task<PartList> EditList(string colorId, string userToken, string listId, string partNumber, int Quantity);
         Task<PartList> ShowList(string listId, string userToken);
         Task<List> GetAllLists(string userToken);
+
+        Task<List> CreateNewList(string userToken, string Name);
     }
     public class LegoApiService : ILegoApiService
     {
@@ -163,6 +165,29 @@ namespace LegoInventoryManager.Services
                 Console.WriteLine(response.StatusCode);
             }
             return putData;
+        }
+
+        public async Task<List> CreateNewList(string userToken, string Name)
+        {
+            var apiKey = _config["API_KEY"];
+            var url = string.Format($"/api/v3/users/{userToken}/partlists/?key={apiKey}");
+            var postData = new List
+            {
+                Name = Name
+            };
+            var json = JsonSerializer.Serialize(postData);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = client.PostAsync(url, content).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var responseContent = response.Content.ReadAsStringAsync().Result;
+                var postResponse = JsonSerializer.Deserialize<PostResponse>(responseContent);
+            } else
+            {
+                Console.WriteLine(response.StatusCode);
+            }
+            return postData;
         }
     }
 }

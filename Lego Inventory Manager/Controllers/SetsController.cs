@@ -1,4 +1,5 @@
-﻿using LegoInventoryManager.Services;
+﻿using LegoInventoryManager.Models;
+using LegoInventoryManager.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LegoInventoryManager.Controllers
@@ -14,10 +15,10 @@ namespace LegoInventoryManager.Controllers
 
         public async Task<IActionResult> Index(string userToken)
         {
-            Set getSet = new Set();
-            getSet = await _legoApiService.GetSet(userToken);
+            Set getSets = new Set();
+            getSets = await _legoApiService.GetSets(userToken);
 
-            return View(getSet);
+            return View(getSets);
         }
     }
 }

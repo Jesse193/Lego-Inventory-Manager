@@ -211,7 +211,7 @@ namespace LegoInventoryManager.Services
         public async Task<SetShow> SetDetails(string setNumber)
         {
             var apiKey = _config["API_KEY"];
-            var url = string.Format($"/api/v3/lego/sets/{setNumber}/?key={apiKey}");
+            var url = string.Format($"/api/v3/lego/sets/{setNumber}/parts/?key={apiKey}");
             var result = new SetShow();
             var response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)

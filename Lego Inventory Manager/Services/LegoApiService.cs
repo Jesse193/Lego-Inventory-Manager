@@ -23,6 +23,7 @@ namespace LegoInventoryManager.Services
         Task<SetShow> SetDetails(string setNumber);
         Task<SetList> CreateNewSetList(string userToken, string Name);
         Task<SetListSet> AddSetToSetList(string userToken, string setListNumber, string setNumber);
+        Task<SetList> GetSetLists(string userToken);
     }
     public class LegoApiService : ILegoApiService
     {
@@ -272,6 +273,22 @@ namespace LegoInventoryManager.Services
                 Console.WriteLine(response.StatusCode);
             }
             return postData;
+        }
+
+        public async Task<SetList> GetSetLists(string userToken)
+        {
+            var apiKey = _config["API_KEY"];
+            var url = string.Format($"/api/v3/users/{userToken}/setlists/?key={apiKey}");
+            var result = new SetList();
+            var response = await client.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                var stringResponse = await response.Content.ReadAsStringAsync();
+
+                result = JsonSerializer.Deserialize<SetList>(stringResponse);
+                Console.WriteLine(response.StatusCode);
+            }
+            return result;
         }
     }
 }

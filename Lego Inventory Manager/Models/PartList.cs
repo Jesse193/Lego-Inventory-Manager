@@ -28,21 +28,40 @@ namespace LegoInventoryManager.Models
     {
         public int Id { get; set; }
     }
+
+    public class ListShow
+    {
+        [JsonPropertyName("quantity")]
+        public int Quantity { get; set; }
+
+        [JsonPropertyName("list_id")]
+        public int? ListId { get; set; }
+
+        [JsonPropertyName("part")]
+        public ListPart ListPart { get; set; }
+
+        [JsonPropertyName("color")]
+        public ListPartColor ListPartColor { get; set; }
+    }
+
+    public class ListPart
+    {
+        [JsonPropertyName("part_num")]
+        public string PartNumber { get; set; }
+
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+    }
+
+    public class ListPartColor
+    {
+        [JsonPropertyName("id")]
+        public int ColorId { get; set; }
+
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+    }
 }
-
-
-public class ListShow
-{
-    [JsonPropertyName("quantity")]
-    public int Quantity { get; set; }
-
-    [JsonPropertyName("list_id")]
-    public int? ListId { get; set; }
-
-    [JsonPropertyName("part")]
-    public PartColor PartColor { get; set; }
-}
-
 /* GET list/parts 
  * {
   "count": 2,

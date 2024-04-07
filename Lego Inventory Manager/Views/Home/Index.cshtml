@@ -30,5 +30,20 @@
             </table>
             <hr />
         </form>
+        <h3 class="display-4">Create List</h3>
+        <form asp-controller="Lists" asp-action="Post">
+            <table>
+                <tr>
+                    <td>User Token: </td>
+                    <td><input type="text" id="userToken" name="userToken" /></td>
+
+                    <td>New List Name: </td>
+                    <td><input type="text" id="Name" name="Name" /></td>
+
+                    <td><input type="submit" value="Submit" /></td>
+                </tr>
+            </table>
+            <hr />
+        </form>
     </center>
 </div>

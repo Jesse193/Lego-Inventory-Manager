@@ -6,6 +6,9 @@ namespace LegoInventoryManager.Models
     {
         [JsonPropertyName("results")]
         public List<Results>? Results { get; set; }
+
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
     }
 
     public class Results

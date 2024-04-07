@@ -25,13 +25,12 @@
                         </tr>
                         <td>@Html.DisplayFor(modelItem => result.Quantity)</td>
 
-                        <td>@Html.DisplayFor(modelItem => result.PartColor.PartNumber)</td>
-                        <td>@Html.DisplayFor(modelItem => result.PartColor.Name)</td>
-                        <td>@Html.DisplayFor(modelItem => result.PartColor.Color.Name)</td>
-                        <td><img src=@Html.DisplayFor(modelItem => result.PartColor.Image) alt="Image of Lego Part" /></td>
+                        <td>@Html.DisplayFor(modelItem => result.ListPart.PartNumber)</td>
+                        <td>@Html.DisplayFor(modelItem => result.ListPart.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => result.ListPartColor.Name)</td>
 
-                        <h3 class="display-4">Edit Part</h3>
                         <tr>
+                            <td>Edit Part</td>
                             <form asp-controller="PartLists" asp-action="Put">
                                 <td>User Token: </td>
                                 <td><input type="text" id="userToken" name="userToken" /></td>
@@ -39,8 +38,8 @@
                                 <td>Quantity</td>
                                 <td><input type="number" id="Quantity" name="Quantity" /></td>
 
-                                <input type="hidden" id="partNumber" name="partNumber" value="@result.PartColor.PartNumber" />
-                                <input type="hidden" id="colorId" name="colorId" value="@result.PartColor.Color.ColorId" />
+                                <input type="hidden" id="partNumber" name="partNumber" value="@result.ListPart.PartNumber" />
+                                <input type="hidden" id="colorId" name="colorId" value="@result.ListPartColor.ColorId" />
                                 <input type="hidden" id="listId" name="listId" value="@result.ListId" />
 
                                 <td><input type="submit" value="Submit" /></td>

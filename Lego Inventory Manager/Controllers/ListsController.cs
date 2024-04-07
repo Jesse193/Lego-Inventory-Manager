@@ -21,13 +21,5 @@ namespace LegoInventoryManager.Controllers
 
             return View(myLists);
         }
-
-        public async Task<IActionResult> Show(string listId, string userToken)
-        {
-            List myList = new List();
-            myList = await _legoApiService.ShowList(listId, userToken);
-
-            return View(myList);
-        }
     }
 }

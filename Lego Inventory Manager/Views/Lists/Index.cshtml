@@ -7,9 +7,9 @@
         {
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Part Number</th>
-                    <th>Image</th>
+                    <th>List Id</th>
+                    <th>List Name</th>
+                    <th>Number of Parts in List</th>
                 </tr>
 
             </thead>
@@ -23,9 +23,9 @@
                         <table>
                             <tr>
                                 <td>User Token: </td>
-                                <input type="hidden" id="listId" name="listId" value="@list.Id" />
-
                                 <td><input type="text" id="userToken" name="userToken" /></td>
+
+                                <input type="hidden" id="listId" name="listId" value="@list.Id" />
 
                                 <td><input type="submit" value="Submit" /></td>
                             </tr>

@@ -18,17 +18,5 @@ namespace LegoInventoryManager.Models
 
         [JsonPropertyName("num_parts")]
         public int? NumParts { get; set; }
-
-        [JsonPropertyName("list_id")]
-        public int? ListId { get; set; }
-
-        [JsonPropertyName("quantity")]
-        public int? Quantity { get; set; }
-
-        [JsonPropertyName("part")]
-        public PartCatalog? Part { get; set; }
-
-        [JsonPropertyName("color")]
-        public ColorResults? ColorResults { get; set; }
     }
 }

@@ -193,7 +193,7 @@ namespace LegoInventoryManager.Services
         public async Task<Set> GetSets(string searchTerm)
         {
             var apiKey = _config["API_KEY"];
-            var url = string.Format($"/api/v3/lego/sets/?search=6250&key={apiKey}");
+            var url = string.Format($"/api/v3/lego/sets/?search={searchTerm}&key={apiKey}");
             var result = new Set();
             var response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)

@@ -18,6 +18,18 @@
             </table>
             <hr />
         </form>
+        <h3 class="display-4">Search For Sets</h3>
+        <form asp-controller="Sets" asp-action="Index">
+            <table>
+                <tr>
+                    <td>Set Number Or Name: </td>
+                    <td><input type="text" id="searchTerm" name="searchTerm" /></td>
+
+                    <td><input type="submit" value="Submit" /></td>
+                </tr>
+            </table>
+            <hr />
+        </form>
         <h3 class="display-4">Get Part Lists</h3>
         <form asp-controller="Lists" asp-action="Index">
             <table>

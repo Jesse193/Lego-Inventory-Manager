@@ -1,0 +1,36 @@
+﻿@model SetShow
+
+@if (Model != null)
+{
+    <table class="table table-bordered table-striped table-sm">
+        <thead>
+            <tr>
+                <th>Number of Parts</th>
+                <th>Part Number</th>
+                <th>Part Name</th>
+                <th>Part Color ID</th>
+                <th>Part Color Name</th>
+                <th>Quantity</th>
+                <th>Part Element ID</th>
+                <th>Spare Part?</th>
+            </tr>
+        </thead>
+        <tbody>
+        <td>@Html.DisplayFor(modelItem => Model.PartCount)</td>
+        @foreach (var part in Model.Results)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => part.SetPart.PartNumber)</td>
+                <td>@Html.DisplayFor(modelItem => part.SetPart.Name)</td>
+                <td><img src=@Html.DisplayFor(modelItem => part.SetPart.PartImage) alt="Image of Lego Part" /></td>
+                <td>@Html.DisplayFor(modelItem => part.SetPartColor.Id)</td>
+                <td>@Html.DisplayFor(modelItem => part.SetPartColor.Name)</td>
+                <td>@Html.DisplayFor(modelItem => part.Quantity)</td>
+                <td>@Html.DisplayFor(modelItem => part.ElementId)</td>
+                <td>@Html.DisplayFor(modelItem => part.IsSpare)</td>
+            </tr>
+            <br>
+        }
+        </tbody>
+    </table>
+}

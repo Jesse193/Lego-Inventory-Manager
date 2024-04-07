@@ -20,6 +20,7 @@
                     <td>@Html.DisplayFor(modelItem => set.Year)</td>
                     <td>@Html.DisplayFor(modelItem => set.NumParts)</td>
                     <td><img src=@Html.DisplayFor(modelItem => set.Image) alt="Image of Lego Set" /></td>
+                    <td><button name="nameButton" id="idButton" title="See Parts In This Set" class="btn btn-secondary" onclick="location.href='@Url.Action( "show","Sets", new {  setNumber = set.SetNumber })'">See Parts In This Set</button></td>
                 </tr>
             }
         </tbody>

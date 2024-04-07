@@ -1,5 +1,6 @@
 ﻿using LegoInventoryManager.Services;
 using Microsoft.AspNetCore.Mvc;
+using LegoInventoryManager.Models;
 
 namespace LegoInventoryManager.Controllers
 {

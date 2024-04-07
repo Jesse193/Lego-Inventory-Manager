@@ -23,7 +23,7 @@ namespace LegoInventoryManager.Controllers
 
         public async Task<IActionResult> Show(string setNumber)
         {
-            Set Set = new Set();
+            SetShow Set = new SetShow();
             Set = await _legoApiService.SetDetails(setNumber);
 
             return View(Set);

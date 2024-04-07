@@ -1,0 +1,27 @@
+﻿@model Set
+
+@if (Model != null)
+{
+    <table class="table table-bordered table-striped table-sm">
+        <thead>
+            <tr>
+                <th>Set Number</th>
+                <th>Set Name</th>
+                <th>Year Released</th>
+                <th>Number of Parts</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var set in Model.Results)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => set.SetNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => set.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => set.Year)</td>
+                    <td>@Html.DisplayFor(modelItem => set.NumParts)</td>
+                    <td><img src=@Html.DisplayFor(modelItem => set.Image) alt="Image of Lego Set" /></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

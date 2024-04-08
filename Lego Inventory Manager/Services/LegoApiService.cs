@@ -24,7 +24,7 @@ namespace LegoInventoryManager.Services
         Task<SetList> CreateNewSetList(string userToken, string Name);
         Task<SetListSet> AddSetToSetList(string userToken, string setListNumber, string setNumber);
         Task<SetList> GetSetLists(string userToken);
-        Task<SetList> GetSetListSets(string userToken, string listId);
+        Task<SetListShow> GetSetListSets(string userToken, string listId);
     }
     public class LegoApiService : ILegoApiService
     {

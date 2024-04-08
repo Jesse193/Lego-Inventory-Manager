@@ -3,7 +3,7 @@
 @if (Model.Sets != null)
 {
     <table class="table table-bordered table-striped table-sm">
-        @foreach (var set in Model.Sets)
+        @foreach (var list in Model.Sets)
         {
             <thead>
                 <tr>
@@ -15,10 +15,23 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => set.Id)</td>
-                    <td>@Html.DisplayFor(modelItem => set.Name)</td>
-                    <td>@Html.DisplayFor(modelItem => set.NumberSets)</td>
+                    <td>@Html.DisplayFor(modelItem => list.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => list.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => list.NumberSets)</td>
                     <h3 class="display-4">Get Details for this List</h3>
+                    <form asp-controller="SetLists" asp-action="Show">
+                        <table>
+                            <tr>
+                                <td>User Token: </td>
+                                <td><input type="text" id="userToken" name="userToken" /></td>
+
+                                <input type="hidden" id="listId" name="listId" value="@list.Id" />
+
+                                <td><input type="submit" value="Submit" /></td>
+                            </tr>
+                        </table>
+                        <hr />
+                    </form>
                 </tr>
             </tbody>
         }

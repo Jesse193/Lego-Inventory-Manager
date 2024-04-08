@@ -1,0 +1,26 @@
+﻿@model SetList
+
+@if (Model.Sets != null)
+{
+    <table class="table table-bordered table-striped table-sm">
+        @foreach (var set in Model.Sets)
+        {
+            <thead>
+                <tr>
+                    <th>List Id</th>
+                    <th>List Name</th>
+                    <th>Number of Sets in List</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => set.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => set.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => set.NumberSets)</td>
+                    <h3 class="display-4">Get Details for this List</h3>
+                </tr>
+            </tbody>
+        }
+    </table>
+}

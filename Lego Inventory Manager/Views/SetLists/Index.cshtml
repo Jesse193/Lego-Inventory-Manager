@@ -1,26 +1,35 @@
 ﻿@model SetList
 
-@if (Model.Sets != null)
+@if (Model.Results != null)
 {
     <table class="table table-bordered table-striped table-sm">
-        @foreach (var set in Model.Sets)
-        {
-            <thead>
+        <thead>
+            <tr>
+                <th>List Id</th>
+                <th>List Name</th>
+                <th>Number of Sets in List</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var list in Model.Results)
+            {
                 <tr>
-                    <th>List Id</th>
-                    <th>List Name</th>
-                    <th>Number of Sets in List</th>
-                </tr>
+                    <td>@Html.DisplayFor(modelItem => list.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => list.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => list.NumberSets)</td>
+                    <td>Get Details for this List</td>
+                    <form asp-controller="SetListSets" asp-action="Index">
+                      
+                        <td>User Token: </td>
+                        <td><input type="text" id="userToken" name="userToken" /></td>
 
-            </thead>
-            <tbody>
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => set.Id)</td>
-                    <td>@Html.DisplayFor(modelItem => set.Name)</td>
-                    <td>@Html.DisplayFor(modelItem => set.NumberSets)</td>
-                    <h3 class="display-4">Get Details for this List</h3>
+                        <input type="hidden" id="listId" name="listId" value="@list.Id" />
+
+                        <td><input type="submit" value="Submit" /></td>
+                        
+                    </form>
                 </tr>
-            </tbody>
-        }
+            }
+        </tbody>
     </table>
 }

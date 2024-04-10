@@ -13,11 +13,13 @@ namespace LegoInventoryManager.Models
         [JsonPropertyName("num_sets")]
         public int NumberSets { get; set; }
 
-        [JsonPropertyName("results")]
-        public List<Sets> Sets { get; set; }
-    }
+        [JsonPropertyName("count")]
+        public int Count { get; set; }
 
-    public class Sets
+        [JsonPropertyName("results")]
+        public List<SetListResults> Results { get; set; }
+    }
+    public class SetListResults
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -27,9 +29,9 @@ namespace LegoInventoryManager.Models
 
         [JsonPropertyName("num_sets")]
         public int NumberSets { get; set; }
-
     }
 }
+
 /*
  * Get /api/v3/users/{userToken}/setlists
  * {

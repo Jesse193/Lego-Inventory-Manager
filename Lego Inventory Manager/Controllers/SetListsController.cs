@@ -20,6 +20,8 @@ namespace LegoInventoryManager.Controllers
 
             return View(setLists);
         }
+
+        
         public async Task<IActionResult> Post(string userToken, string Name)
         {
             SetList newList = new SetList();

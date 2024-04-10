@@ -23,11 +23,12 @@
                             <th>Part Name</th>
                             <th>Color</th>
                         </tr>
-                        <td>@Html.DisplayFor(modelItem => result.Quantity)</td>
-
-                        <td>@Html.DisplayFor(modelItem => result.ListPart.PartNumber)</td>
-                        <td>@Html.DisplayFor(modelItem => result.ListPart.Name)</td>
-                        <td>@Html.DisplayFor(modelItem => result.ListPartColor.Name)</td>
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => result.Quantity)</td>
+                            <td>@Html.DisplayFor(modelItem => result.ListPart.PartNumber)</td>
+                            <td>@Html.DisplayFor(modelItem => result.ListPart.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => result.ListPartColor.Name)</td>
+                        </tr>
 
                         <tr>
                             <td>Edit Part</td>

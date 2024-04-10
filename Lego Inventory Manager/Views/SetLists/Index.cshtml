@@ -1,39 +1,35 @@
 ﻿@model SetList
 
-@if (Model.Sets != null)
+@if (Model.Results != null)
 {
     <table class="table table-bordered table-striped table-sm">
-        @foreach (var list in Model.Sets)
-        {
-            <thead>
-                <tr>
-                    <th>List Id</th>
-                    <th>List Name</th>
-                    <th>Number of Sets in List</th>
-                </tr>
-
-            </thead>
-            <tbody>
+        <thead>
+            <tr>
+                <th>List Id</th>
+                <th>List Name</th>
+                <th>Number of Sets in List</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var list in Model.Results)
+            {
                 <tr>
                     <td>@Html.DisplayFor(modelItem => list.Id)</td>
                     <td>@Html.DisplayFor(modelItem => list.Name)</td>
                     <td>@Html.DisplayFor(modelItem => list.NumberSets)</td>
-                    <h3 class="display-4">Get Details for this List</h3>
-                    <form asp-controller="SetLists" asp-action="Show">
-                        <table>
-                            <tr>
-                                <td>User Token: </td>
-                                <td><input type="text" id="userToken" name="userToken" /></td>
+                    <td>Get Details for this List</td>
+                    <form asp-controller="SetListSets" asp-action="Index">
+                      
+                        <td>User Token: </td>
+                        <td><input type="text" id="userToken" name="userToken" /></td>
 
-                                <input type="hidden" id="listId" name="listId" value="@list.Id" />
+                        <input type="hidden" id="listId" name="listId" value="@list.Id" />
 
-                                <td><input type="submit" value="Submit" /></td>
-                            </tr>
-                        </table>
-                        <hr />
+                        <td><input type="submit" value="Submit" /></td>
+                        
                     </form>
                 </tr>
-            </tbody>
-        }
+            }
+        </tbody>
     </table>
 }

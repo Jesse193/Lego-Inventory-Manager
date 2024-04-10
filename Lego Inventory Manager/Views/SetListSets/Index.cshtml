@@ -1,0 +1,38 @@
+﻿@model SetListSet
+
+<div>
+    <h3 class="display-4">List Details</h3>
+
+    @if (Model != null)
+    {
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>Number Of Sets</th>
+                    <th>Quantity</th>
+                    <th>Set</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td>@Html.DisplayFor(modelItem => Model.Count)</td>
+                @foreach (var set in Model.Results)
+                {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => set.Quantity)</td>
+                    <td>Set Number</td>
+                    <td>Set Name</td>
+                    <td>Year Released</td>
+                    <td>Number Of Parts</td>
+
+                    <td>@Html.DisplayFor(modelItem => set.SetDetails.SetNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => set.SetDetails.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => set.SetDetails.Year)</td>
+                    <td>@Html.DisplayFor(modelItem => set.SetDetails.NumberParts)</td>
+                    <td>@Html.DisplayFor(modelItem => set.SetDetails.SetImage)</td>
+                </tr>
+                <br>
+                }
+            </tbody>
+        </table>
+    }
+</div>

@@ -27,6 +27,19 @@
                         <td>@Html.DisplayFor(modelItem => set.SetDetails.Year)</td>
                         <td>@Html.DisplayFor(modelItem => set.SetDetails.NumberParts)</td>
                         <td><img src=@Html.DisplayFor(modelItem => set.SetDetails.SetImage) alt="Image of Lego Set" width="200" height="200" /></td>
+                        <td>Edit Set</td>
+                        <form asp-controller="SetListSets" asp-action="Put">
+                            <td>User Token: </td>
+                            <td><input type="text" id="userToken" name="userToken" /></td>
+
+                            <td>Quantity</td>
+                            <td><input type="number" id="Quantity" name="Quantity" /></td>
+
+                            <input type="hidden" id="setNumber" name="setNumber" value="@set.SetDetails.SetNumber" />
+                            <input type="hidden" id="listId" name="listId" value="@set.ListId" />
+
+                            <td><input type="submit" value="Submit" /></td>
+                        </form>
                     </tr>
                     <br>
                 }

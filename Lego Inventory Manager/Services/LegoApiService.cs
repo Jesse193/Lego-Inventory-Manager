@@ -6,6 +6,8 @@ using System.Text;
 using System;
 using Microsoft.AspNetCore.Mvc;
 using System.Xml.Linq;
+using System.Collections.Generic;
+using System.Security.Cryptography;
 
 namespace LegoInventoryManager.Services
 {
@@ -25,6 +27,7 @@ namespace LegoInventoryManager.Services
         Task<SetListSet> AddSetToSetList(string userToken, string setListNumber, string setNumber);
         Task<SetList> GetSetLists(string userToken);
         Task<SetListSet> GetSetListSets(string userToken, string listId);
+        Task<SetListSet> ChangeSetQuantity(string userToken, string listId, string setNumber, int Quantity);
     }
     public class LegoApiService : ILegoApiService
     {
@@ -306,6 +309,31 @@ namespace LegoInventoryManager.Services
                 Console.WriteLine(response.StatusCode);
             }
             return result;
+        }
+
+        public async Task<SetListSet> ChangeSetQuantity(string userToken, string listId, string setNumber, int Quantity)
+        {
+            var apiKey = _config["API_KEY"];
+            var url = string.Format($"/api/v3/users/{userToken}/setlists/{listId}/sets/{setNumber}/?key={apiKey}");
+            var putData = new SetListSet
+            {
+                Quantity = Quantity
+            };
+            var json = JsonSerializer.Serialize(putData);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = client.PutAsync(url, content).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var responseContent = response.Content.ReadAsStringAsync().Result;
+                var postResponse = JsonSerializer.Deserialize<PostResponse>(responseContent);
+                Console.WriteLine(response.StatusCode);
+            }
+            else
+            {
+                Console.WriteLine(response.StatusCode);
+            }
+            return putData;
         }
     }
 }

@@ -20,6 +20,14 @@ namespace LegoInventoryManager.Controllers
             return View(setListSets);
         }
 
+        public async Task<IActionResult> Put(string userToken, string listId, string setNumber, int Quantity )
+        {
+            SetListSet updatedQuantity = new SetListSet();
+            updatedQuantity = await _legoApiService.ChangeSetQuantity(userToken, listId, setNumber, Quantity);
+
+            return View(updatedQuantity);
+        }
+
         public async Task<IActionResult> Post(string userToken, string setListNumber, string setNumber)
         {
             SetListSet newList = new SetListSet();

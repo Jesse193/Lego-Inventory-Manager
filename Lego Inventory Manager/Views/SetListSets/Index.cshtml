@@ -5,32 +5,30 @@
 
     @if (Model != null)
     {
+            <th>Number Of Sets: @Html.DisplayFor(modelItem => Model.Count)</th>
         <table class="table table-bordered table-striped table-sm">
             <thead>
                 <tr>
-                    <th>Number Of Sets</th>
                     <th>Quantity</th>
-                    <th>Set</th>
+                    <th>Set Number</th>
+                    <th>Set Name</th>
+                    <th>Year Released</th>
+                    <th>Number Of Parts</th>
                 </tr>
             </thead>
             <tbody>
-                <td>@Html.DisplayFor(modelItem => Model.Count)</td>
                 @foreach (var set in Model.Results)
                 {
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => set.Quantity)</td>
-                    <td>Set Number</td>
-                    <td>Set Name</td>
-                    <td>Year Released</td>
-                    <td>Number Of Parts</td>
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => set.Quantity)</td>
 
-                    <td>@Html.DisplayFor(modelItem => set.SetDetails.SetNumber)</td>
-                    <td>@Html.DisplayFor(modelItem => set.SetDetails.Name)</td>
-                    <td>@Html.DisplayFor(modelItem => set.SetDetails.Year)</td>
-                    <td>@Html.DisplayFor(modelItem => set.SetDetails.NumberParts)</td>
-                    <td>@Html.DisplayFor(modelItem => set.SetDetails.SetImage)</td>
-                </tr>
-                <br>
+                        <td>@Html.DisplayFor(modelItem => set.SetDetails.SetNumber)</td>
+                        <td>@Html.DisplayFor(modelItem => set.SetDetails.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => set.SetDetails.Year)</td>
+                        <td>@Html.DisplayFor(modelItem => set.SetDetails.NumberParts)</td>
+                        <td><img src=@Html.DisplayFor(modelItem => set.SetDetails.SetImage) alt="Image of Lego Set/>"</td>
+                    </tr>
+                    <br>
                 }
             </tbody>
         </table>

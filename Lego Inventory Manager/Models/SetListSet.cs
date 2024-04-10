@@ -21,7 +21,7 @@ namespace LegoInventoryManager.Models
     }
     public class SetListSetsResults
     {
-        [JsonPropertyName("id")]
+        [JsonPropertyName("list_id")]
         public int Id { get; set; }
 
         [JsonPropertyName("name")]

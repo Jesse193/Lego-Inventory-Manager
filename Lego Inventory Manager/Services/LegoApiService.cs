@@ -295,7 +295,7 @@ namespace LegoInventoryManager.Services
         public async Task<SetListSet> GetSetListSets(string userToken, string listId)
         {
             var apiKey = _config["API_KEY"];
-            var url = string.Format($"/api/v3/users/{userToken}/setlists/sets/?key={apiKey}");
+            var url = string.Format($"/api/v3/users/{userToken}/setlists/{listId}/sets/?key={apiKey}");
             var result = new SetListSet();
             var response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)

@@ -29,7 +29,6 @@ namespace LegoInventoryManager.Models
 
         [JsonPropertyName("num_sets")]
         public int NumberSets { get; set; }
-
     }
 }
 

@@ -16,7 +16,7 @@
                 <tr>
                     <td>@Html.DisplayFor(modelItem => part.Name)</td>
                     <td>@Html.DisplayFor(modelItem => part.PartNumber)</td>
-                    <td><img src=@Html.DisplayFor(modelItem => part.Image) alt="Image of Lego Part" /></td>
+                    <td><img src=@Html.DisplayFor(modelItem => part.Image) alt="Image of Lego Part" width="200" height="200" /></td>
                     <td><button name="nameButton" id="idButton" title="Get Colors This Part Comes in" class="btn btn-secondary" onclick="location.href='@Url.Action( "index","PartColors", new {  partNumber = part.PartNumber })'">Get Colors This Part Comes In</button></td>
                 </tr>
             }

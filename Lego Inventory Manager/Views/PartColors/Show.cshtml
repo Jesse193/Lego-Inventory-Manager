@@ -18,7 +18,7 @@
                 <tr>
                     <td>@Html.DisplayFor(modelItem => Model.PartColor.Name)</td>
                     <td>@Html.DisplayFor(modelItem => Model.PartColor.PartNumber)</td>
-                    <td><img src=@Html.DisplayFor(modelItem => Model.Color.Image) alt="Image of Lego Part" /></td>
+                    <td><img src=@Html.DisplayFor(modelItem => Model.Color.Image) alt="Image of Lego Part" width="200" height="200" /></td>
 
 					<td>
                         <form asp-controller="PartLists" asp-action="Post">

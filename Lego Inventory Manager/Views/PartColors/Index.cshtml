@@ -30,7 +30,7 @@
                     {
                         <tr>
                             <td>@Html.DisplayFor(modelItem => item.ColorName)</td>
-                            <td><img src=@Html.DisplayFor(modelItem => item.Image) alt="Image of Lego Part" /></td>
+                            <td><img src=@Html.DisplayFor(modelItem => item.Image) alt="Image of Lego Part" width="200" height="200" /></td>
                             @foreach (var element in item.ElementList)
                             {
                                 <td><button name="nameButton" id="idButton" title="Get Details of Color or to ADD to Collection" class="btn btn-secondary" onclick="location.href='@Url.Action("Show","PartColors", new {  elementNumber = element })'">Get Details of Color or to ADD to Collection</button></td>

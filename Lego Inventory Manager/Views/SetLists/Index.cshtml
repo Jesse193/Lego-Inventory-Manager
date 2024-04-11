@@ -1,6 +1,6 @@
 ﻿@model SetList
 
-@if (Model.Results != null)
+@if (Model != null)
 {
     <table class="table table-bordered table-striped table-sm">
         <thead>
@@ -27,6 +27,16 @@
 
                         <td><input type="submit" value="Submit" /></td>
                         
+                    </form>
+                    <form asp-controller="SetLists" asp-action="Show">
+
+                    <td>User Token: </td>
+                    <td><input type="text" id="userToken" name="userToken" /></td>
+
+                    <input type="hidden" id="listId" name="listId" value="@list.Id" />
+
+                    <td><input type="submit" value="Submit" /></td>
+
                     </form>
                 </tr>
             }

@@ -32,6 +32,19 @@
                         </table>
                         <hr />
                     </form>
+                    <form asp-controller="PartLists" asp-action="Show">
+                        <table>
+                            <tr>
+                                <td>User Token: </td>
+                                <td><input type="text" id="userToken" name="userToken" /></td>
+
+                                <input type="hidden" id="listId" name="listId" value="@list.Id" />
+
+                                <td><input type="submit" value="Submit" /></td>
+                            </tr>
+                        </table>
+                        <hr />
+                    </form>
                 </tr>
             </tbody>
         }

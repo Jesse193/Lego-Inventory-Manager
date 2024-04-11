@@ -2,7 +2,7 @@
 
 namespace LegoInventoryManager.Models
 {
-    public class Set
+    public class SetCatalog
     {
         [JsonPropertyName("results")]
         public List<SetResults> Results { get; set; }

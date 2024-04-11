@@ -4,18 +4,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LegoInventoryManager.Controllers
 {
-    public class SetsController : Controller
+    public class SetCatalogsController : Controller
     {
         private readonly ILegoApiService _legoApiService;
 
-        public SetsController(ILegoApiService legoApiService)
+        public SetCatalogsController(ILegoApiService legoApiService)
         {
             _legoApiService = legoApiService;
         }
 
         public async Task<IActionResult> Index(string searchTerm)
         {
-            Set getSets = new Set();
+            SetCatalog getSets = new SetCatalog();
             getSets = await _legoApiService.GetSets(searchTerm);
 
             return View(getSets);

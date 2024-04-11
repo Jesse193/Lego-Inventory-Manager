@@ -16,11 +16,11 @@ namespace LegoInventoryManager.Services
         Task<PartCatalog> GetParts(string partNumber);
         Task<PartColor> GetPartColors(string partNumber);
         Task<PartColorShow> GetColorDetails(string elementNumber);
-        Task<PartList> AddPartsToList(string userToken, string listId, string partNumber, int Quantity, int colorId);
-        Task<PartList> EditList(string colorId, string userToken, string listId, string partNumber, int Quantity);
-        Task<PartList> ShowList(string listId, string userToken);
-        Task<List> GetAllLists(string userToken);
-        Task<List> CreateNewList(string userToken, string Name);
+        Task<PartListPart> AddPartsToList(string userToken, string listId, string partNumber, int Quantity, int colorId);
+        Task<PartListPart> EditList(string colorId, string userToken, string listId, string partNumber, int Quantity);
+        Task<PartListPart> ShowList(string listId, string userToken);
+        Task<PartList> GetAllLists(string userToken);
+        Task<PartList> CreateNewList(string userToken, string Name);
         Task<Set> GetSets(string searchTerm);
         Task<SetShow> SetDetails(string setNumber);
         Task<SetList> CreateNewSetList(string userToken, string Name);
@@ -93,11 +93,11 @@ namespace LegoInventoryManager.Services
             return result;
         }
 
-        public async Task<PartList> AddPartsToList(string userToken, string listId, string partNumber, int Quantity, int colorId)
+        public async Task<PartListPart> AddPartsToList(string userToken, string listId, string partNumber, int Quantity, int colorId)
         {
             var apiKey = _config["API_KEY"];
             var url = string.Format($"/api/v3/users/{userToken}/partlists/{listId}/parts/?key={apiKey}");
-            var postData = new PartList
+            var postData = new PartListPart
             {
                 PartNumber = partNumber,
                 ColorId = colorId,
@@ -120,26 +120,10 @@ namespace LegoInventoryManager.Services
             return postData;
         }
 
-        public async Task<List> GetAllLists(string userToken)
+        public async Task<PartList> GetAllLists(string userToken)
         {
             var apiKey = _config["API_KEY"];
             var url = string.Format($"/api/v3/users/{userToken}/partlists/?key={apiKey}");
-            var result = new List();
-            var response = await client.GetAsync(url);
-            if (response.IsSuccessStatusCode)
-            {
-                var stringResponse = await response.Content.ReadAsStringAsync();
-
-                result = JsonSerializer.Deserialize<List>(stringResponse);
-                Console.WriteLine(response.StatusCode);
-            }
-            return result;
-        }
-
-        public async Task<PartList> ShowList(string listId, string userToken)
-        {
-            var apiKey = _config["API_KEY"];
-            var url = string.Format($"/api/v3/users/{userToken}/partlists/{listId}/parts?key={apiKey}");
             var result = new PartList();
             var response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)
@@ -152,11 +136,27 @@ namespace LegoInventoryManager.Services
             return result;
         }
 
-        public async Task<PartList> EditList(string colorId, string userToken, string listId, string partNumber, int Quantity)
+        public async Task<PartListPart> ShowList(string listId, string userToken)
+        {
+            var apiKey = _config["API_KEY"];
+            var url = string.Format($"/api/v3/users/{userToken}/partlists/{listId}/parts?key={apiKey}");
+            var result = new PartListPart();
+            var response = await client.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                var stringResponse = await response.Content.ReadAsStringAsync();
+
+                result = JsonSerializer.Deserialize<PartListPart>(stringResponse);
+                Console.WriteLine(response.StatusCode);
+            }
+            return result;
+        }
+
+        public async Task<PartListPart> EditList(string colorId, string userToken, string listId, string partNumber, int Quantity)
         {
             var apiKey = _config["API_KEY"];
             var url = string.Format($"/api/v3/users/{userToken}/partlists/{listId}/parts/{partNumber}/{colorId}?key={apiKey}");
-            var putData = new PartList
+            var putData = new PartListPart
             {
                 Quantity = Quantity
             };
@@ -177,11 +177,11 @@ namespace LegoInventoryManager.Services
             return putData;
         }
 
-        public async Task<List> CreateNewList(string userToken, string Name)
+        public async Task<PartList> CreateNewList(string userToken, string Name)
         {
             var apiKey = _config["API_KEY"];
             var url = string.Format($"/api/v3/users/{userToken}/partlists/?key={apiKey}");
-            var postData = new List
+            var postData = new PartList
             {
                 Name = Name
             };

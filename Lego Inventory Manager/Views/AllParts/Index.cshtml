@@ -1,0 +1,36 @@
+﻿@model AllPart
+
+<div>
+    @if (Model != null)
+    {
+        <th>Number Of Parts: @Html.DisplayFor(modelItem => Model.Count)</th>
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>Quantity</th>
+                    <th>Part Name</th>
+                    <th>Part Number</th>
+                    <th>Part Color Name</th>
+                    <th>Part Color ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var result in Model.Results)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => result.Quantity)</td>
+                        <td>@Html.DisplayFor(modelItem => result.Part.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => result.Part.PartNumber)</td>
+                        <td>@Html.DisplayFor(modelItem => result.Color.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => result.Color.ColorId)</td>
+                        <td><img src=@Html.DisplayFor(modelItem => result.Part.Image) alt="Image of Lego Part" width="200" height="200" /></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if (Model.Next != null){
+            int page = Int32.Parse((Model.Next.Substring(119, 1)));
+            <td><button name="nameButton" id="idButton" title="Next Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","AllParts", new {  userToken = Model.Next.Substring(37, 64), page = page -= 1 })'">Next Page</button></td>
+        }
+    }
+</div>

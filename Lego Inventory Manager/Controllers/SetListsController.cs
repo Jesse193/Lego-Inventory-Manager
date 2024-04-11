@@ -21,6 +21,13 @@ namespace LegoInventoryManager.Controllers
             return View(setLists);
         }
 
+        public async Task<IActionResult> Show(string userToken, string listId)
+        {
+            SetList setList = new SetList();
+            setList = await _legoApiService.SetListDetails(userToken, listId);
+
+            return View(setList);
+        }
         
         public async Task<IActionResult> Post(string userToken, string Name)
         {

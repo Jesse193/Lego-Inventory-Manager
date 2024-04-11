@@ -31,6 +31,7 @@ namespace LegoInventoryManager.Services
         Task<AllPart> AllParts(string userToken, int page);
         Task<PartList> PartListDetails(string userToken, string listId);
         Task<SetList> SetListDetails(string userToken, string listId);
+        Task<PartList> DeletePartList(string userId, string listId);
     }
     public class LegoApiService : ILegoApiService
     {
@@ -377,7 +378,7 @@ namespace LegoInventoryManager.Services
         public async Task<SetList> SetListDetails(string userToken, string listId)
         {
             var apiKey = _config["API_KEY"];
-            var url = string.Format($"/api/v3/users/{userToken}/partlists/{listId}/&key={apiKey}");
+            var url = string.Format($"/api/v3/users/{userToken}/setlists/{listId}/&key={apiKey}");
             var result = new SetList();
             var response = await client.GetAsync(url);
             Console.WriteLine(url);
@@ -390,6 +391,23 @@ namespace LegoInventoryManager.Services
             }
             return result;
 
+        }
+
+        public async Task<SetList> DeletePartList(string userToken, string listId)
+        {
+            var apiKey = _config["API_KEY"];
+            var url = string.Format($"/api/v3/users/{userToken}/partlists/{listId}/&key={apiKey}");
+            var result = new SetList();
+            var response = await client.DeleteAsync(url);
+            Console.WriteLine(url);
+            if (response.IsSuccessStatusCode)
+            {
+                var stringResponse = await response.Content.ReadAsStringAsync();
+
+                result = JsonSerializer.Deserialize<SetList>(stringResponse);
+                Console.WriteLine(response.StatusCode);
+            }
+            return result;
         }
     }
 }

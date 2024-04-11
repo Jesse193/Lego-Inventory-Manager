@@ -1,4 +1,4 @@
-﻿@model PartList
+﻿@model PartListPart
 
 <div>
     <h3 class="display-4">List Details</h3>
@@ -32,7 +32,7 @@
 
                         <tr>
                             <td>Edit Part</td>
-                            <form asp-controller="PartLists" asp-action="Put">
+                            <form asp-controller="PartListParts" asp-action="Put">
                                 <td>User Token: </td>
                                 <td><input type="text" id="userToken" name="userToken" /></td>
 

@@ -1,4 +1,4 @@
-﻿@model List
+﻿@model PartList
 
 @if (Model.Results != null)
 {
@@ -19,7 +19,7 @@
                     <td>@Html.DisplayFor(modelItem => list.Name)</td>
                     <td>@Html.DisplayFor(modelItem => list.NumParts)</td>
                     <h3 class="display-4">Get Details for this List</h3>
-                    <form asp-controller="PartLists" asp-action="Show">
+                    <form asp-controller="PartListParts" asp-action="Index">
                         <table>
                             <tr>
                                 <td>User Token: </td>

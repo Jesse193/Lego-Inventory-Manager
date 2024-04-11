@@ -29,6 +29,7 @@ namespace LegoInventoryManager.Services
         Task<SetListSet> SetListSets(string userToken, string listId);
         Task<SetListSet> ChangeSetQuantity(string userToken, string listId, string setNumber, int Quantity);
         Task<AllPart> AllParts(string userToken, int page);
+        Task<PartList> PartListDetails(string userToken, string listId);
     }
     public class LegoApiService : ILegoApiService
     {
@@ -352,6 +353,24 @@ namespace LegoInventoryManager.Services
                 Console.WriteLine(response.StatusCode);
             }
             return result;
+        }
+
+        public async Task<PartList> PartListDetails(string userToken, string listId)
+        {
+            var apiKey = _config["API_KEY"];
+            var url = string.Format($"/api/v3/users/{userToken}/partlists/{listId}/&key={apiKey}");
+            var result = new PartList();
+            var response = await client.GetAsync(url);
+            Console.WriteLine(url);
+            if (response.IsSuccessStatusCode)
+            {
+                var stringResponse = await response.Content.ReadAsStringAsync();
+
+                result = JsonSerializer.Deserialize<PartList>(stringResponse);
+                Console.WriteLine(response.StatusCode);
+            }
+            return result;
+
         }
     }
 }

@@ -26,7 +26,7 @@ namespace LegoInventoryManager.Services
         Task<SetList> CreateNewSetList(string userToken, string Name);
         Task<SetListSet> AddSetToSetList(string userToken, string setListNumber, string setNumber);
         Task<SetList> GetSetLists(string userToken);
-        Task<SetListSet> GetSetListSets(string userToken, string listId);
+        Task<SetListSet> SetListSets(string userToken, string listId);
         Task<SetListSet> ChangeSetQuantity(string userToken, string listId, string setNumber, int Quantity);
         Task<AllPart> AllParts(string userToken, int page);
     }
@@ -296,7 +296,7 @@ namespace LegoInventoryManager.Services
             return result;
         }
 
-        public async Task<SetListSet> GetSetListSets(string userToken, string listId)
+        public async Task<SetListSet> SetListSets(string userToken, string listId)
         {
             var apiKey = _config["API_KEY"];
             var url = string.Format($"/api/v3/users/{userToken}/setlists/{listId}/sets/?key={apiKey}");

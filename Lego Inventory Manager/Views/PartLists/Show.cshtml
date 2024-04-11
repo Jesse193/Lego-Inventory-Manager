@@ -1,0 +1,26 @@
+﻿@model PartList
+
+<div>
+    <h3 class="display-4">List Details</h3>
+
+    @if (Model != null)
+    {
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>List Id</th>
+                    <th>List Name</th>
+                    <th>Number of Parts in List</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => Model.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => Model.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => Model.NumParts)</td>
+                </tr>
+            </tbody>
+        </table>
+    }
+</div>

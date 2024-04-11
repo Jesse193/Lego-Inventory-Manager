@@ -10,6 +10,8 @@
                     <th>List Id</th>
                     <th>List Name</th>
                     <th>Number of Parts in List</th>
+                    <th>See Parts In This List</th>
+                    <th>Get Details for this List</th>
                 </tr>
 
             </thead>
@@ -18,33 +20,35 @@
                     <td>@Html.DisplayFor(modelItem => list.Id)</td>
                     <td>@Html.DisplayFor(modelItem => list.Name)</td>
                     <td>@Html.DisplayFor(modelItem => list.NumParts)</td>
-                    <h3 class="display-4">Get Details for this List</h3>
-                    <form asp-controller="PartListParts" asp-action="Index">
-                        <table>
-                            <tr>
-                                <td>User Token: </td>
-                                <td><input type="text" id="userToken" name="userToken" /></td>
+                    <td>
+                        <form asp-controller="PartListParts" asp-action="Index">
+                            <table>
+                                <tr>
+                                    <td>User Token: </td>
+                                    <td><input type="text" id="userToken" name="userToken" /></td>
 
-                                <input type="hidden" id="listId" name="listId" value="@list.Id" />
+                                    <input type="hidden" id="listId" name="listId" value="@list.Id" />
 
-                                <td><input type="submit" value="Submit" /></td>
-                            </tr>
-                        </table>
-                        <hr />
-                    </form>
-                    <form asp-controller="PartLists" asp-action="Show">
-                        <table>
-                            <tr>
-                                <td>User Token: </td>
-                                <td><input type="text" id="userToken" name="userToken" /></td>
+                                    <td><input type="submit" value="Submit" /></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </td>
+                    <td>
+                        <form asp-controller="PartLists" asp-action="Show">
+                            <table>
+                                <tr>
+                                    <td>User Token: </td>
+                                    <td><input type="text" id="userToken" name="userToken" /></td>
 
-                                <input type="hidden" id="listId" name="listId" value="@list.Id" />
+                                    <input type="hidden" id="listId" name="listId" value="@list.Id" />
 
-                                <td><input type="submit" value="Submit" /></td>
-                            </tr>
-                        </table>
-                        <hr />
-                    </form>
+                                    <td><input type="submit" value="Submit" /></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </td>
+                    
                 </tr>
             </tbody>
         }

@@ -5,7 +5,7 @@ namespace LegoInventoryManager.Models
     public class AllPart
     {
         [JsonPropertyName("count")]
-        int Count { get; set; }
+        public int Count { get; set; }
 
         [JsonPropertyName("next")]
         public string Next { get; set; }

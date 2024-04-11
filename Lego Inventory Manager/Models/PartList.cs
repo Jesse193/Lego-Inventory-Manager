@@ -9,6 +9,12 @@ namespace LegoInventoryManager.Models
 
         [JsonPropertyName("name")]
         public string Name { get; set; }
+
+        [JsonPropertyName("id")]
+        public int? Id { get; set; }
+
+        [JsonPropertyName("num_parts")]
+        public int? NumParts { get; set; }
     }
 
     public class Results

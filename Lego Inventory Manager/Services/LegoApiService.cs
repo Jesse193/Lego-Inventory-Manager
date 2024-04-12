@@ -398,9 +398,6 @@ namespace LegoInventoryManager.Services
             var response = await client.DeleteAsync(url);
             if (response.IsSuccessStatusCode)
             {
-                var stringResponse = await response.Content.ReadAsStringAsync();
-
-                result = JsonSerializer.Deserialize<PartList>(stringResponse);
                 Console.WriteLine(response.StatusCode);
             }
             return result;

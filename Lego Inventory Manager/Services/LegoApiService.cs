@@ -32,6 +32,7 @@ namespace LegoInventoryManager.Services
         Task<PartList> PartListDetails(string userToken, string listId);
         Task<SetList> SetListDetails(string userToken, string listId);
         Task<PartList> DeletePartList(string userId, string listId);
+        Task<SetList> DeleteSetList(string userId, string listId);
     }
     public class LegoApiService : ILegoApiService
     {
@@ -395,6 +396,19 @@ namespace LegoInventoryManager.Services
             var apiKey = _config["API_KEY"];
             var url = string.Format($"/api/v3/users/{userToken}/partlists/{listId}/?key={apiKey}");
             var result = new PartList();
+            var response = await client.DeleteAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine(response.StatusCode);
+            }
+            return result;
+        }
+
+        public async Task<SetList> DeleteSetList(string userToken, string listId)
+        {
+            var apiKey = _config["API_KEY"];
+            var url = string.Format($"/api/v3/users/{userToken}/setlists/{listId}/?key={apiKey}");
+            var result = new SetList();
             var response = await client.DeleteAsync(url);
             if (response.IsSuccessStatusCode)
             {

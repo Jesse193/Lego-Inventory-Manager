@@ -23,10 +23,11 @@
             </tbody>
         </table>
         <p>Delete This List</p>
-        <form asp-controller="PartList" asp-action="Destroy">
+        <p>Warning: Deleting This List Will Delete ALL Parts In The List</p>    
+        <form asp-controller="PartLists" asp-action="Delete">
             <table>
                 <tr>
-                    <td>User Token: </td>
+                    <td>User Token:</td>
                     <td><input type="text" id="userToken" name="userToken" /></td>
 
                     <input type="hidden" id="listId" name="listId" value="@Model.Id" />
@@ -34,7 +35,6 @@
                     <td><input type="submit" value="Submit" /></td>
                 </tr>
             </table>
-            <hr />
         </form>
     }
 </div>

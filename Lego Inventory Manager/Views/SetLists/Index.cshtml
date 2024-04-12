@@ -8,6 +8,8 @@
                 <th>List Id</th>
                 <th>List Name</th>
                 <th>Number of Sets in List</th>
+                <th>See Sets In This List</th>
+                <th>Details For This List</th>
             </tr>
         </thead>
         <tbody>
@@ -17,27 +19,28 @@
                     <td>@Html.DisplayFor(modelItem => list.Id)</td>
                     <td>@Html.DisplayFor(modelItem => list.Name)</td>
                     <td>@Html.DisplayFor(modelItem => list.NumberSets)</td>
-                    <td>Get Details for this List</td>
-                    <form asp-controller="SetListSets" asp-action="Index">
-                      
-                        <td>User Token: </td>
-                        <td><input type="text" id="userToken" name="userToken" /></td>
+                    <td>
+                        <form asp-controller="SetListSets" asp-action="Index">
 
-                        <input type="hidden" id="listId" name="listId" value="@list.Id" />
+                            <td>User Token: </td>
+                            <td><input type="text" id="userToken" name="userToken" /></td>
 
-                        <td><input type="submit" value="Submit" /></td>
-                        
-                    </form>
-                    <form asp-controller="SetLists" asp-action="Show">
+                            <input type="hidden" id="listId" name="listId" value="@list.Id" />
 
-                    <td>User Token: </td>
-                    <td><input type="text" id="userToken" name="userToken" /></td>
+                            <td><input type="submit" value="Submit" /></td>
+                        </form>
+                    </td>
+                    <td> 
+                        <form asp-controller="SetLists" asp-action="Show">
 
-                    <input type="hidden" id="listId" name="listId" value="@list.Id" />
+                            <td>User Token: </td>
+                            <td><input type="text" id="userToken" name="userToken" /></td>
 
-                    <td><input type="submit" value="Submit" /></td>
+                            <input type="hidden" id="listId" name="listId" value="@list.Id" />
 
-                    </form>
+                            <td><input type="submit" value="Submit" /></td>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>

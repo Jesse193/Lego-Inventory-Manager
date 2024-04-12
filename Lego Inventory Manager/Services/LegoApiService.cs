@@ -343,10 +343,9 @@ namespace LegoInventoryManager.Services
         public async Task<AllPart> AllParts(string userToken, int page)
         {
             var apiKey = _config["API_KEY"];
-            var url = string.Format($"/api/v3/users/{userToken}/allparts/?page={page}&key={apiKey}");
+            var url = string.Format($"/api/v3/users/{userToken}/allparts/?page={page}?key={apiKey}");
             var result = new AllPart();
             var response = await client.GetAsync(url);
-            Console.WriteLine(url);
             if (response.IsSuccessStatusCode)
             {
                 var stringResponse = await response.Content.ReadAsStringAsync();
@@ -360,10 +359,9 @@ namespace LegoInventoryManager.Services
         public async Task<PartList> PartListDetails(string userToken, string listId)
         {
             var apiKey = _config["API_KEY"];
-            var url = string.Format($"/api/v3/users/{userToken}/partlists/{listId}/&key={apiKey}");
+            var url = string.Format($"/api/v3/users/{userToken}/partlists/{listId}/?key={apiKey}");
             var result = new PartList();
             var response = await client.GetAsync(url);
-            Console.WriteLine(url);
             if (response.IsSuccessStatusCode)
             {
                 var stringResponse = await response.Content.ReadAsStringAsync();
@@ -378,10 +376,9 @@ namespace LegoInventoryManager.Services
         public async Task<SetList> SetListDetails(string userToken, string listId)
         {
             var apiKey = _config["API_KEY"];
-            var url = string.Format($"/api/v3/users/{userToken}/setlists/{listId}/&key={apiKey}");
+            var url = string.Format($"/api/v3/users/{userToken}/setlists/{listId}/?key={apiKey}");
             var result = new SetList();
             var response = await client.GetAsync(url);
-            Console.WriteLine(url);
             if (response.IsSuccessStatusCode)
             {
                 var stringResponse = await response.Content.ReadAsStringAsync();
@@ -396,10 +393,9 @@ namespace LegoInventoryManager.Services
         public async Task<PartList> DeletePartList(string userToken, string listId)
         {
             var apiKey = _config["API_KEY"];
-            var url = string.Format($"/api/v3/users/{userToken}/partlists/{listId}/&key={apiKey}");
+            var url = string.Format($"/api/v3/users/{userToken}/partlists/{listId}/?key={apiKey}");
             var result = new PartList();
             var response = await client.DeleteAsync(url);
-            Console.WriteLine(url);
             if (response.IsSuccessStatusCode)
             {
                 var stringResponse = await response.Content.ReadAsStringAsync();

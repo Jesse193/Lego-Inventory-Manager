@@ -36,5 +36,13 @@ namespace LegoInventoryManager.Controllers
 
             return View(newList);
         }
+
+        public async Task<IActionResult> Delete(string userToken, string listId)
+        {
+            SetList deleteList = new SetList();
+            deleteList = await _legoApiService.DeleteSetList(userToken, listId);
+
+            return View(deleteList);
+        }
     }
 }

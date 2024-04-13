@@ -14,7 +14,7 @@ namespace LegoInventoryManager.Services
     public interface ILegoApiService
     {
         Task<PartCatalog> GetParts(string partNumber, int page);
-        Task<PartColor> GetPartColors(string partNumber);
+        Task<PartColor> GetPartColors(string partNumber, int page);
         Task<PartColorShow> GetColorDetails(string elementNumber);
         Task<PartListPart> AddPartsToList(string userToken, string listId, string partNumber, int Quantity, int colorId);
         Task<PartListPart> EditList(string colorId, string userToken, string listId, string partNumber, int Quantity);
@@ -69,12 +69,13 @@ namespace LegoInventoryManager.Services
             return result;
         }
 
-        public async Task<PartColor> GetPartColors(string partNumber)
+        public async Task<PartColor> GetPartColors(string partNumber, int page)
         {
             var apiKey = _config["API_KEY"];
-            var url = string.Format($"/api/v3/lego/parts/{partNumber}/colors?key={apiKey}");
+            var url = string.Format($"/api/v3/lego/parts/{partNumber}/colors?page={page}&key={apiKey}&page_size=1");
             var result = new PartColor();
             var response = await client.GetAsync(url);
+            Console.WriteLine(url);
             if (response.IsSuccessStatusCode)
             {
                 var stringResponse = await response.Content.ReadAsStringAsync();

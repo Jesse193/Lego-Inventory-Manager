@@ -1,44 +1,56 @@
 ﻿@model SetCatalog
 
-@if (Model != null)
-{
-    <table class="table table-bordered table-striped table-sm">
-        <thead>
-            <tr>
-                <th>Set Number</th>
-                <th>Set Name</th>
-                <th>Year Released</th>
-                <th>Number of Parts</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var set in Model.Results)
-            {
+<div>
+    @if (Model != null)
+    {
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => set.SetNumber)</td>
-                    <td>@Html.DisplayFor(modelItem => set.Name)</td>
-                    <td>@Html.DisplayFor(modelItem => set.Year)</td>
-                    <td>@Html.DisplayFor(modelItem => set.NumParts)</td>
-                    <td><img src=@Html.DisplayFor(modelItem => set.Image) alt="Image of Lego Set" /></td>
-                    <td><button name="nameButton" id="idButton" title="See Parts In This Set" class="btn btn-secondary" onclick="location.href='@Url.Action( "show","Sets", new {  setNumber = set.SetNumber })'">See Parts In This Set</button></td>\
-                    <h3 class="display-4">Add Set To List</h3>
-                    <form asp-controller="SetListSets" asp-action="Post">
-                        <table>
-                            <tr>
-                                <td>User Token:</td>
-                                <td><input type="text" id="userToken" name="userToken" /></td>
-
-                                <td>List ID:</td>
-                                <td><input type="text" id="ListId" name="ListId" /></td>
-
-                                <td><input type="hidden" id="setNumber" name="setNumber" value="@set.SetNumber" /></td>
-
-                                <td><input type="submit" value="Submit" /></td>
-                            </tr>
-                        </table>
-                    </form>
+                    <th>Set Number</th>
+                    <th>Set Name</th>
+                    <th>Year Released</th>
+                    <th>Number of Parts</th>
+                    <th>@Html.DisplayFor(modelItem => Model.Next)</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
+            </thead>
+            <tbody>
+                @foreach (var set in Model.Results)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => set.SetNumber)</td>
+                        <td>@Html.DisplayFor(modelItem => set.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => set.Year)</td>
+                        <td>@Html.DisplayFor(modelItem => set.NumParts)</td>
+                        <td><img src=@Html.DisplayFor(modelItem => set.Image) alt="Image of Lego Set" /></td>
+                        <td><button name="nameButton" id="idButton" title="See Parts In This Set" class="btn btn-secondary" onclick="location.href='@Url.Action( "show","Sets", new {  setNumber = set.SetNumber })'">See Parts In This Set</button></td>\
+                        <h3 class="display-4">Add Set To List</h3>
+                        <form asp-controller="SetListSets" asp-action="Post">
+                            <table>
+                                <tr>
+                                    <td>User Token:</td>
+                                    <td><input type="text" id="userToken" name="userToken" /></td>
+
+                                    <td>List ID:</td>
+                                    <td><input type="text" id="ListId" name="ListId" /></td>
+
+                                    <td><input type="hidden" id="setNumber" name="setNumber" value="@set.SetNumber" /></td>
+
+                                    <td><input type="submit" value="Submit" /></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if (Model.Next != null)
+        {
+            int pageIndex = Model.Next.IndexOf("&page=");
+            int pageNumber = pageIndex + 6;
+            int page = Int32.Parse(Model.Next.Substring(pageNumber, 1));
+            int setNumberIndex = Model.Next.IndexOf("&search=");
+            string partNumber = Model.Next.Substring(setNumberIndex);
+            <button name="nameButton" id="idButton" title="Next Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","setCatalogs", new {  partNumber = partNumber, page = page })'">Next Page</button>
+        }
+    }
+</div>

@@ -21,7 +21,7 @@ namespace LegoInventoryManager.Services
         Task<PartListPart> ListParts(string listId, string userToken);
         Task<PartList> GetAllLists(string userToken);
         Task<PartList> CreateNewList(string userToken, string Name);
-        Task<SetCatalog> GetSets(string searchTerm);
+        Task<SetCatalog> GetSets(string searchTerm, int page);
         Task<SetShow> SetDetails(string setNumber);
         Task<SetList> CreateNewSetList(string userToken, string Name);
         Task<SetListSet> AddSetToSetList(string userToken, string setListNumber, string setNumber);
@@ -207,10 +207,10 @@ namespace LegoInventoryManager.Services
             return postData;
         }
 
-        public async Task<SetCatalog> GetSets(string searchTerm)
+        public async Task<SetCatalog> GetSets(string searchTerm, int page)
         {
             var apiKey = _config["API_KEY"];
-            var url = string.Format($"/api/v3/lego/sets/?search={searchTerm}&key={apiKey}");
+            var url = string.Format($"/api/v3/lego/sets/?search={searchTerm}&page={page}&key={apiKey}");
             var result = new SetCatalog();
             var response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)

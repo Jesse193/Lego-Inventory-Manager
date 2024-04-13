@@ -25,9 +25,11 @@
         </table>
         @if (Model.Next != null)
         {
-            int page = Int32.Parse((Model.Next.Substring(85, 1)));
+            int pageNumberIndexStart = Model.Next.IndexOf("&page=") + "&page=".Length;
+            int pageNumberIndexEnd = Model.Next.IndexOf("&search");
+            string page = Model.Next.Substring(pageNumberIndexStart, pageNumberIndexEnd - pageNumberIndexStart);
+            int partNumberIndex = Model.Next.IndexOf("&search=");
+            string partNumber = Model.Next.Substring(partNumberIndex);
             <td><button name="nameButton" id="idButton" title="Next Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","PartCatalogs", new {  partNumber = Model.Next.Substring(94), page = page })'">Next Page</button></td>
         }
     }
-</div>
-

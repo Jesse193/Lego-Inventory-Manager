@@ -18,6 +18,9 @@ namespace LegoInventoryManager.Models
 
         [JsonPropertyName("count")]
         public int Count { get; set; }
+
+        [JsonPropertyName("next")]
+        public string Next { get; set; }
     }
     public class SetListSetsResults
     {

@@ -12,10 +12,10 @@ namespace LegoInventoryManager.Controllers
         {
             _legoApiService = legoApiService;
         }
-        public async Task<IActionResult> Index(string userToken, string listId)
+        public async Task<IActionResult> Index(string userToken, string listId, int page = 1)
         {
             SetListSet setListSets = new SetListSet();
-            setListSets = await _legoApiService.SetListSets(userToken, listId);
+            setListSets = await _legoApiService.SetListSets(userToken, listId, page);
 
             return View(setListSets);
         }

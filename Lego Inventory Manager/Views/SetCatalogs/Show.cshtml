@@ -33,4 +33,14 @@
         }
         </tbody>
     </table>
+    @if (Model.Next != null)
+    {
+        int pageIndex = Model.Next.IndexOf("&page=");
+        int pageNumber = pageIndex + 6;
+        int page = Int32.Parse(Model.Next.Substring(pageNumber, 1));
+        int setNumberIndexStart = Model.Next.IndexOf("sets/") + "sets/".Length;
+        int setNumberIndexEnd = Model.Next.IndexOf("/parts");
+        string setNumber = Model.Next.Substring(setNumberIndexStart, setNumberIndexEnd - setNumberIndexStart);
+        <td><button name="nameButton" id="idButton" title="Next Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Show","SetCatalogs", new {  setNumber = setNumber, page = page })'">Next Page</button></td>
+    }
 }

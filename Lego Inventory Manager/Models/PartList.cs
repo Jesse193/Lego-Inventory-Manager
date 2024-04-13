@@ -15,6 +15,9 @@ namespace LegoInventoryManager.Models
 
         [JsonPropertyName("num_parts")]
         public int? NumParts { get; set; }
+
+        [JsonPropertyName("next")]
+        public string Next { get; set; }
     }
 
     public class Results

@@ -1,48 +1,60 @@
 ﻿@model SetList
 
-@if (Model != null)
-{
-    <table class="table table-bordered table-striped table-sm">
-        <thead>
-            <tr>
-                <th>List Id</th>
-                <th>List Name</th>
-                <th>Number of Sets in List</th>
-                <th>See Sets In This List</th>
-                <th>Details For This List</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var list in Model.Results)
-            {
+<div>
+    @if (Model != null)
+    {
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => list.Id)</td>
-                    <td>@Html.DisplayFor(modelItem => list.Name)</td>
-                    <td>@Html.DisplayFor(modelItem => list.NumberSets)</td>
-                    <td>
-                        <form asp-controller="SetListSets" asp-action="Index">
-
-                            <td>User Token: </td>
-                            <td><input type="text" id="userToken" name="userToken" /></td>
-
-                            <input type="hidden" id="listId" name="listId" value="@list.Id" />
-
-                            <td><input type="submit" value="Submit" /></td>
-                        </form>
-                    </td>
-                    <td> 
-                        <form asp-controller="SetLists" asp-action="Show">
-
-                            <td>User Token: </td>
-                            <td><input type="text" id="userToken" name="userToken" /></td>
-
-                            <input type="hidden" id="listId" name="listId" value="@list.Id" />
-
-                            <td><input type="submit" value="Submit" /></td>
-                        </form>
-                    </td>
+                    <th>List Id</th>
+                    <th>List Name</th>
+                    <th>Number of Sets in List</th>
+                    <th>See Sets In This List</th>
+                    <th>Details For This List</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
+            </thead>
+            <tbody>
+                @foreach (var list in Model.Results)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => list.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => list.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => list.NumberSets)</td>
+                        <td>
+                            <form asp-controller="SetListSets" asp-action="Index">
+
+                                <td>User Token: </td>
+                                <td><input type="text" id="userToken" name="userToken" /></td>
+
+                                <input type="hidden" id="listId" name="listId" value="@list.Id" />
+
+                                <td><input type="submit" value="Submit" /></td>
+                            </form>
+                        </td>
+                        <td> 
+                            <form asp-controller="SetLists" asp-action="Show">
+
+                                <td>User Token: </td>
+                                <td><input type="text" id="userToken" name="userToken" /></td>
+
+                                <input type="hidden" id="listId" name="listId" value="@list.Id" />
+
+                                <td><input type="submit" value="Submit" /></td>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if (Model.Next != null)
+        {
+            int userTokenIndexStart = Model.Next.IndexOf("users/") + "users/".Length;
+            int userTokenIndexEnd = Model.Next.IndexOf("/setlists");
+            string userToken = Model.Next.Substring(userTokenIndexStart, userTokenIndexEnd - userTokenIndexStart);
+            int pageIndex = Model.Next.IndexOf("&page=");
+            int pageNumber = pageIndex + 6;
+            int page = Int32.Parse(Model.Next.Substring(pageNumber, 1));
+            <td><button name="nameButton" id="idButton" title="Next Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","SetLists", new {  userToken = userToken, page = page })'">Next Page</button></td>
+        }
+    }
+</div>

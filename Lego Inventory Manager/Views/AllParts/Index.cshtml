@@ -29,8 +29,8 @@
             </tbody>
         </table>
         @if (Model.Next != null){
-            int page = Int32.Parse((Model.Next.Substring(119, 1)));
-            <td><button name="nameButton" id="idButton" title="Next Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","AllParts", new {  userToken = Model.Next.Substring(37, 64), page = page -= 1 })'">Next Page</button></td>
+            int page = Int32.Parse((Model.Next.Substring(154, 1)));
+            <td><button name="nameButton" id="idButton" title="Next Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","AllParts", new {  userToken = Model.Next.Substring(37, 64), page = page })'">Next Page</button></td>
         }
     }
 </div>

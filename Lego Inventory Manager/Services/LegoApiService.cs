@@ -13,7 +13,7 @@ namespace LegoInventoryManager.Services
 {
     public interface ILegoApiService
     {
-        Task<PartCatalog> GetParts(string partNumber);
+        Task<PartCatalog> GetParts(string partNumber, int page);
         Task<PartColor> GetPartColors(string partNumber);
         Task<PartColorShow> GetColorDetails(string elementNumber);
         Task<PartListPart> AddPartsToList(string userToken, string listId, string partNumber, int Quantity, int colorId);
@@ -52,12 +52,14 @@ namespace LegoInventoryManager.Services
             };
         }
 
-        public async Task<PartCatalog> GetParts(string partNumber)
+        public async Task<PartCatalog> GetParts(string partNumber, int page)
         {
             var apiKey = _config["API_KEY"];
-            var url = string.Format($"/api/v3/lego/parts/?search={partNumber}pr&key={apiKey}");
+            var url = string.Format($"/api/v3/lego/parts/?search={partNumber}&page={page}&key={apiKey}");
             var result = new PartCatalog();
             var response = await client.GetAsync(url);
+            Console.WriteLine(url);
+            Console.WriteLine(response);
             if (response.IsSuccessStatusCode)
             {
                 var stringResponse = await response.Content.ReadAsStringAsync();           
@@ -344,7 +346,7 @@ namespace LegoInventoryManager.Services
         public async Task<AllPart> AllParts(string userToken, int page)
         {
             var apiKey = _config["API_KEY"];
-            var url = string.Format($"/api/v3/users/{userToken}/allparts/?page={page}?key={apiKey}");
+            var url = string.Format($"/api/v3/users/{userToken}/allparts/?page={page}&key={apiKey}");
             var result = new AllPart();
             var response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)

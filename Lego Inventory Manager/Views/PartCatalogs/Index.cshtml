@@ -1,25 +1,33 @@
 ﻿@model PartCatalog
 
-@if (Model != null)
-{
-    <table class="table table-bordered table-striped table-sm">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Part Number</th>
-                <th>Image</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var part in Model.Results)
-            {
+<div>
+    @if (Model != null)
+    {
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => part.Name)</td>
-                    <td>@Html.DisplayFor(modelItem => part.PartNumber)</td>
-                    <td><img src=@Html.DisplayFor(modelItem => part.Image) alt="Image of Lego Part" width="200" height="200" /></td>
-                    <td><button name="nameButton" id="idButton" title="Get Colors This Part Comes in" class="btn btn-secondary" onclick="location.href='@Url.Action( "index","PartColors", new {  partNumber = part.PartNumber })'">Get Colors This Part Comes In</button></td>
+                    <th>Name</th>
+                    <th>Part Number</th>
+                    <th>Image</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
+            </thead>
+            <tbody>
+                @foreach (var part in Model.Results)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => part.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => part.PartNumber)</td>
+                        <td><img src=@Html.DisplayFor(modelItem => part.Image) alt="Image of Lego Part" width="200" height="200" /></td>
+                        <td><button name="nameButton" id="idButton" title="Get Colors This Part Comes in" class="btn btn-secondary" onclick="location.href='@Url.Action( "index","PartColors", new {  partNumber = part.PartNumber })'">Get Colors This Part Comes In</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if (Model.Next != null)
+        {
+            int page = Int32.Parse((Model.Next.Substring(85, 1)));
+            <td><button name="nameButton" id="idButton" title="Next Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","PartCatalogs", new {  partNumber = Model.Next.Substring(94), page = page })'">Next Page</button></td>
+        }
+    }
+</div>
+

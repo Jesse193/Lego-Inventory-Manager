@@ -13,10 +13,10 @@ namespace LegoInventoryManager.Controllers
             _legoApiService = legoApiService;
         }
 
-        public async Task<IActionResult> Index(string partNumber)
+        public async Task<IActionResult> Index(string partNumber, int page = 1)
         {
             PartCatalog parts = new PartCatalog();
-            parts = await _legoApiService.GetParts(partNumber);
+            parts = await _legoApiService.GetParts(partNumber, page);
 
             return View(parts);
         }

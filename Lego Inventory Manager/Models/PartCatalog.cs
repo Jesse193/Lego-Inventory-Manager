@@ -6,6 +6,9 @@ namespace LegoInventoryManager.Models
     {
         [JsonPropertyName("results")]
         public List<PartResults> Results { get; set; }
+
+        [JsonPropertyName("next")]
+        public string Next { get; set; }
     }
     public class PartResults
     {

@@ -18,7 +18,7 @@ namespace LegoInventoryManager.Services
         Task<PartColorShow> GetColorDetails(string elementNumber);
         Task<PartListPart> AddPartsToList(string userToken, string listId, string partNumber, int Quantity, int colorId);
         Task<PartListPart> EditList(string colorId, string userToken, string listId, string partNumber, int Quantity);
-        Task<PartListPart> ListParts(string listId, string userToken);
+        Task<PartListPart> ListParts(string listId, string userToken, int page);
         Task<PartList> GetAllLists(string userToken, int page);
         Task<PartList> CreateNewList(string userToken, string Name);
         Task<SetCatalog> GetSets(string searchTerm, int page);
@@ -143,10 +143,10 @@ namespace LegoInventoryManager.Services
             return result;
         }
 
-        public async Task<PartListPart> ListParts(string listId, string userToken)
+        public async Task<PartListPart> ListParts(string listId, string userToken, int page)
         {
             var apiKey = _config["API_KEY"];
-            var url = string.Format($"/api/v3/users/{userToken}/partlists/{listId}/parts?key={apiKey}");
+            var url = string.Format($"/api/v3/users/{userToken}/partlists/{listId}/parts/?page={page}&key={apiKey}");
             var result = new PartListPart();
             var response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)

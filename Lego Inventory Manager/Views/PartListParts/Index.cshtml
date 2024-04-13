@@ -51,5 +51,18 @@
                 </tr>
             </tbody>
         </table>
+        @if (Model.Next != null)
+        {
+            int userTokenIndexStart = Model.Next.IndexOf("users/") + "users/".Length;
+            int userTokenIndexEnd = Model.Next.IndexOf("/partlists");
+            string userToken = Model.Next.Substring(userTokenIndexStart, userTokenIndexEnd - userTokenIndexStart);
+            int listIdIndexStart = Model.Next.IndexOf("partlists/") + "partlists/".Length;
+            int listIdIndexEnd = Model.Next.IndexOf("/parts");
+            string listId = Model.Next.Substring(listIdIndexStart, listIdIndexEnd - listIdIndexStart);
+            int pageIndex = Model.Next.IndexOf("&page=");
+            int pageNumber = pageIndex + 6;
+            int page = Int32.Parse(Model.Next.Substring(pageNumber, 1));
+            <td><button name="nameButton" id="idButton" title="Next Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","PartListParts", new {  userToken = userToken, listId = listId, page = page })'">Next Page</button></td>
+        }
     }
 </div>

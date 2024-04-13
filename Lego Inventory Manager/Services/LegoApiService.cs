@@ -72,7 +72,7 @@ namespace LegoInventoryManager.Services
         public async Task<PartColor> GetPartColors(string partNumber, int page)
         {
             var apiKey = _config["API_KEY"];
-            var url = string.Format($"/api/v3/lego/parts/{partNumber}/colors?page={page}&key={apiKey}&page_size=1");
+            var url = string.Format($"/api/v3/lego/parts/{partNumber}/colors?page={page}&key={apiKey}");
             var result = new PartColor();
             var response = await client.GetAsync(url);
             Console.WriteLine(url);

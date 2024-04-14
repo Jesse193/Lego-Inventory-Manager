@@ -22,24 +22,20 @@
                         <td>@Html.DisplayFor(modelItem => list.NumberSets)</td>
                         <td>
                             <form asp-controller="SetListSets" asp-action="Index">
-
-                                <td>User Token: </td>
-                                <td><input type="text" id="userToken" name="userToken" /></td>
+                                User Token: <input type="text" id="userToken" name="userToken" />
 
                                 <input type="hidden" id="listId" name="listId" value="@list.Id" />
 
-                                <td><input type="submit" value="Submit" /></td>
+                                <input type="submit" value="Submit" />
                             </form>
                         </td>
                         <td> 
                             <form asp-controller="SetLists" asp-action="Show">
-
-                                <td>User Token: </td>
-                                <td><input type="text" id="userToken" name="userToken" /></td>
+                                User Token: <input type="text" id="userToken" name="userToken" />
 
                                 <input type="hidden" id="listId" name="listId" value="@list.Id" />
 
-                                <td><input type="submit" value="Submit" /></td>
+                                <input type="submit" value="Submit" />
                             </form>
                         </td>
                     </tr>

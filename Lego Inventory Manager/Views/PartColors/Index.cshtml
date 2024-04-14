@@ -37,6 +37,26 @@
                 }
             </tbody>
         </table>
+        @if (Model.Previous != null)
+        {
+            @if (Model.Previous.Contains("page="))
+            {
+                int pageIndex = Model.Previous.IndexOf("&page=");
+                int pageNumber = pageIndex + 6;
+                int page = Int32.Parse(Model.Previous.Substring(pageNumber, 1));
+                int partNumberIndexStart = Model.Previous.IndexOf("parts/") + "parts/".Length;
+                int partNumberIndexEnd = Model.Previous.IndexOf("/colors");
+                string partNumber = Model.Previous.Substring(partNumberIndexStart, partNumberIndexEnd - partNumberIndexStart);
+                <button name="nameButton" id="idButton" title="previous Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","PartColors", new {  partNumber = partNumber, page = page })'">Previous Page</button>
+            }
+            else
+            {
+                int partNumberIndexStart = Model.Previous.IndexOf("parts/") + "parts/".Length;
+                int partNumberIndexEnd = Model.Previous.IndexOf("/colors");
+                string partNumber = Model.Previous.Substring(partNumberIndexStart, partNumberIndexEnd - partNumberIndexStart);
+                <button name="nameButton" id="idButton" title="Previous Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","PartColors", new {  partNumber = partNumber, page = 1 })'">Previous Page</button>
+            }
+        }
         @if (Model.Next != null)
         {
             int pageIndex = Model.Next.IndexOf("&page=");

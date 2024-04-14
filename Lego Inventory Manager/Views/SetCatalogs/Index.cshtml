@@ -10,6 +10,7 @@
                     <th>Set Name</th>
                     <th>Year Released</th>
                     <th>Number of Parts</th>
+                    <th>Add Set To List</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,24 +21,23 @@
                         <td>@Html.DisplayFor(modelItem => set.Name)</td>
                         <td>@Html.DisplayFor(modelItem => set.Year)</td>
                         <td>@Html.DisplayFor(modelItem => set.NumParts)</td>
-                        <td><img src=@Html.DisplayFor(modelItem => set.Image) alt="Image of Lego Set" /></td>
-                        <td><button name="nameButton" id="idButton" title="See Parts In This Set" class="btn btn-secondary" onclick="location.href='@Url.Action( "show","SetCatalogs", new {  setNumber = set.SetNumber })'">See Parts In This Set</button></td>\
-                        <h3 class="display-4">Add Set To List</h3>
-                        <form asp-controller="SetListSets" asp-action="Post">
-                            <table>
-                                <tr>
-                                    <td>User Token:</td>
-                                    <td><input type="text" id="userToken" name="userToken" /></td>
+                        <td><img src=@Html.DisplayFor(modelItem => set.Image) alt="Image of Lego Set" width="350" height="300" /></td>
+                        <td><button name="nameButton" id="idButton" title="See Parts In This Set" class="btn btn-secondary" onclick="location.href='@Url.Action( "show","SetCatalogs", new {  setNumber = set.SetNumber })'">See Parts In This Set</button></td>
+                        <td>
+                            <form asp-controller="SetListSets" asp-action="Post">
+                                <center>
+                                    <input type="text" id="userToken" name="userToken" placeholder="UserToken" />
+                                    <br>
+                                    <br />
+                                    <input type="text" id="ListId" name="ListId" placeholder="List ID"/>
+                                    <br>
+                                    <br />
+                                    <input type="hidden" id="setNumber" name="setNumber" value="@set.SetNumber" />
 
-                                    <td>List ID:</td>
-                                    <td><input type="text" id="ListId" name="ListId" /></td>
-
-                                    <td><input type="hidden" id="setNumber" name="setNumber" value="@set.SetNumber" /></td>
-
-                                    <td><input type="submit" value="Submit" /></td>
-                                </tr>
-                            </table>
-                        </form>
+                                    <input type="submit" value="Submit" />
+                                </center>
+                            </form>
+                        </td>
                     </tr>
                 }
             </tbody>

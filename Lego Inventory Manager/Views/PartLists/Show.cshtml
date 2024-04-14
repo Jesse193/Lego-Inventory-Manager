@@ -11,6 +11,11 @@
                     <th>List Id</th>
                     <th>List Name</th>
                     <th>Number of Parts in List</th>
+                    <th>
+                        Delete This List
+                        <br />
+                        Warning: Deleting This List Will Delete ALL Parts In The List
+                    </th>
                 </tr>
 
             </thead>
@@ -19,22 +24,19 @@
                     <td>@Html.DisplayFor(modelItem => Model.Id)</td>
                     <td>@Html.DisplayFor(modelItem => Model.Name)</td>
                     <td>@Html.DisplayFor(modelItem => Model.NumParts)</td>
+                    <td>
+                        <form asp-controller="PartLists" asp-action="Delete">
+                            <center>
+                                <input type="text" id="userToken" name="userToken" placeholder="User Token:" />
+
+                                <input type="hidden" id="listId" name="listId" value="@Model.Id" />
+
+                                <input type="submit" value="Submit" />
+                            </center>
+                        </form>
+                    </td>     
                 </tr>
             </tbody>
         </table>
-        <p>Delete This List</p>
-        <p>Warning: Deleting This List Will Delete ALL Parts In The List</p>    
-        <form asp-controller="PartLists" asp-action="Delete">
-            <table>
-                <tr>
-                    <td>User Token:</td>
-                    <td><input type="text" id="userToken" name="userToken" /></td>
-
-                    <input type="hidden" id="listId" name="listId" value="@Model.Id" />
-
-                    <td><input type="submit" value="Submit" /></td>
-                </tr>
-            </table>
-        </form>
     }
 </div>

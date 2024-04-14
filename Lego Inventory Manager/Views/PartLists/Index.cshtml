@@ -1,56 +1,88 @@
 ﻿@model PartList
 
-@if (Model.Results != null)
-{
-    <table class="table table-bordered table-striped table-sm">
-        @foreach (var list in Model.Results)
-        {
-            <thead>
-                <tr>
-                    <th>List Id</th>
-                    <th>List Name</th>
-                    <th>Number of Parts in List</th>
-                    <th>See Parts In This List</th>
-                    <th>Get Details for this List</th>
-                </tr>
+<div>
+    @if (Model.Results != null)
+    {
+        <table class="table table-bordered table-striped table-sm">
+            @foreach (var list in Model.Results)
+            {
+                <thead>
+                    <tr>
+                        <th>List Id</th>
+                        <th>List Name</th>
+                        <th>Number of Parts in List</th>
+                        <th>See Parts In This List</th>
+                        <th>Get Details for this List</th>
+                    </tr>
 
-            </thead>
-            <tbody>
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => list.Id)</td>
-                    <td>@Html.DisplayFor(modelItem => list.Name)</td>
-                    <td>@Html.DisplayFor(modelItem => list.NumParts)</td>
-                    <td>
-                        <form asp-controller="PartListParts" asp-action="Index">
-                            <table>
-                                <tr>
-                                    <td>User Token: </td>
-                                    <td><input type="text" id="userToken" name="userToken" /></td>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => list.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => list.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => list.NumParts)</td>
+                        <td>
+                            <form asp-controller="PartListParts" asp-action="Index">
+                                <table>
+                                    <tr>
+                                        <td>User Token: </td>
+                                        <td><input type="text" id="userToken" name="userToken" /></td>
 
-                                    <input type="hidden" id="listId" name="listId" value="@list.Id" />
+                                        <input type="hidden" id="listId" name="listId" value="@list.Id" />
 
-                                    <td><input type="submit" value="Submit" /></td>
-                                </tr>
-                            </table>
-                        </form>
-                    </td>
-                    <td>
-                        <form asp-controller="PartLists" asp-action="Show">
-                            <table>
-                                <tr>
-                                    <td>User Token: </td>
-                                    <td><input type="text" id="userToken" name="userToken" /></td>
+                                        <td><input type="submit" value="Submit" /></td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </td>
+                        <td>
+                            <form asp-controller="PartLists" asp-action="Show">
+                                <table>
+                                    <tr>
+                                        <td>User Token: </td>
+                                        <td><input type="text" id="userToken" name="userToken" /></td>
 
-                                    <input type="hidden" id="listId" name="listId" value="@list.Id" />
+                                        <input type="hidden" id="listId" name="listId" value="@list.Id" />
 
-                                    <td><input type="submit" value="Submit" /></td>
-                                </tr>
-                            </table>
-                        </form>
-                    </td>
+                                        <td><input type="submit" value="Submit" /></td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </td>
                     
-                </tr>
-            </tbody>
+                    </tr>
+                </tbody>
+            }
+        </table>
+        @if (Model.Previous != null)
+        {
+            @if (Model.Previous.Contains("page="))
+            {
+                int userTokenIndexStart = Model.Previous.IndexOf("users/") + "users/".Length;
+                int userTokenIndexEnd = Model.Previous.IndexOf("/partlists");
+                string userToken = Model.Previous.Substring(userTokenIndexStart, userTokenIndexEnd - userTokenIndexStart);
+                int pageIndex = Model.Previous.IndexOf("&page=");
+                int pageNumber = pageIndex + 6;
+                int page = Int32.Parse(Model.Previous.Substring(pageNumber, 1));
+                <td><button name="nameButton" id="idButton" title="Previous Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","PartLists", new {  userToken = userToken, page = page })'">Previous Page</button></td>
+            }
+            else
+            {
+                int userTokenIndexStart = Model.Previous.IndexOf("users/") + "users/".Length;
+                int userTokenIndexEnd = Model.Previous.IndexOf("/partlists");
+                string userToken = Model.Previous.Substring(userTokenIndexStart, userTokenIndexEnd - userTokenIndexStart);
+                <td><button name="nameButton" id="idButton" title="Previous Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","PartLists", new {  userToken = userToken, page = 1 })'">Previous Page</button></td>
+            }
         }
-    </table>
-}
+        @if (Model.Next != null)
+        {
+            int userTokenIndexStart = Model.Next.IndexOf("users/") + "users/".Length;
+            int userTokenIndexEnd = Model.Next.IndexOf("/partlists");
+            string userToken = Model.Next.Substring(userTokenIndexStart, userTokenIndexEnd - userTokenIndexStart);
+            int pageIndex = Model.Next.IndexOf("&page=");
+            int pageNumber = pageIndex + 6;
+            int page = Int32.Parse(Model.Next.Substring(pageNumber, 1));
+            <td><button name="nameButton" id="idButton" title="Next Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","PartLists", new {  userToken = userToken, page = page })'">Next Page</button></td>
+        }
+    }
+</div>

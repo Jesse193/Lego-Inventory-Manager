@@ -18,6 +18,12 @@ namespace LegoInventoryManager.Models
 
         [JsonPropertyName("results")]
         public List<SetListResults> Results { get; set; }
+
+        [JsonPropertyName("next")]
+        public string Next { get; set; }
+
+        [JsonPropertyName("previous")]
+        public string Previous { get; set; }
     }
     public class SetListResults
     {

@@ -1,44 +1,71 @@
 ﻿@model PartColor
+<div>
+    <h3 class="display-4">Lego Part Finder</h3>
+    <center>
+        <form asp-controller="Parts" asp-action="Index">
+            <table>
+                <tr>
+                    <td>Part Number: </td>
+                    <td><input type="text" id="partNumber" name="partNumber" /></td>
 
-{
-    <div>
-        <h3 class="display-4">Lego Part Finder</h3>
-        <center>
-            <form asp-controller="Parts" asp-action="Index">
-                <table>
-                    <tr>
-                        <td>Part Number: </td>
-                        <td><input type="text" id="partNumber" name="partNumber" /></td>
-
-                        <td><input type="submit" value="Submit" /></td>
-                    </tr>
-                </table>
-                <hr />
-            </form>
-        </center>
-        @if (Model != null)
-        {
-            <table class="table table-bordered table-striped table-sm">
-                <thead>
-                    <tr>
-                        <th>Color</th>
-                        <th>Image</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Results)
-                    {
-                        <tr>
-                            <td>@Html.DisplayFor(modelItem => item.ColorName)</td>
-                            <td><img src=@Html.DisplayFor(modelItem => item.Image) alt="Image of Lego Part" width="200" height="200" /></td>
-                            @foreach (var element in item.ElementList)
-                            {
-                                <td><button name="nameButton" id="idButton" title="Get Details of Color or to ADD to Collection" class="btn btn-secondary" onclick="location.href='@Url.Action("Show","PartColors", new {  elementNumber = element })'">Get Details of Color or to ADD to Collection</button></td>
-                            }
-                        </tr>
-                    }
-                </tbody>
+                    <td><input type="submit" value="Submit" /></td>
+                </tr>
             </table>
+            <hr />
+        </form>
+    </center>
+    @if (Model != null)
+    {
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>Color</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Results)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.ColorName)</td>
+                        <td><img src=@Html.DisplayFor(modelItem => item.Image) alt="Image of Lego Part" width="200" height="200" /></td>
+                        @foreach (var element in item.ElementList)
+                        {
+                            <td><button name="nameButton" id="idButton" title="Get Details of Color or to ADD to Collection" class="btn btn-secondary" onclick="location.href='@Url.Action("Show","PartColors", new {  elementNumber = element })'">Get Details of Color or to ADD to Collection</button></td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if (Model.Previous != null)
+        {
+            @if (Model.Previous.Contains("page="))
+            {
+                int pageIndex = Model.Previous.IndexOf("&page=");
+                int pageNumber = pageIndex + 6;
+                int page = Int32.Parse(Model.Previous.Substring(pageNumber, 1));
+                int partNumberIndexStart = Model.Previous.IndexOf("parts/") + "parts/".Length;
+                int partNumberIndexEnd = Model.Previous.IndexOf("/colors");
+                string partNumber = Model.Previous.Substring(partNumberIndexStart, partNumberIndexEnd - partNumberIndexStart);
+                <button name="nameButton" id="idButton" title="previous Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","PartColors", new {  partNumber = partNumber, page = page })'">Previous Page</button>
+            }
+            else
+            {
+                int partNumberIndexStart = Model.Previous.IndexOf("parts/") + "parts/".Length;
+                int partNumberIndexEnd = Model.Previous.IndexOf("/colors");
+                string partNumber = Model.Previous.Substring(partNumberIndexStart, partNumberIndexEnd - partNumberIndexStart);
+                <button name="nameButton" id="idButton" title="Previous Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","PartColors", new {  partNumber = partNumber, page = 1 })'">Previous Page</button>
+            }
         }
-    </div>
-}
+        @if (Model.Next != null)
+        {
+            int pageIndex = Model.Next.IndexOf("&page=");
+            int pageNumber = pageIndex + 6;
+            int page = Int32.Parse(Model.Next.Substring(pageNumber, 1));
+            int partNumberIndexStart = Model.Next.IndexOf("parts/") + "parts/".Length;
+            int partNumberIndexEnd = Model.Next.IndexOf("/colors");
+            string partNumber = Model.Next.Substring(partNumberIndexStart, partNumberIndexEnd - partNumberIndexStart);
+            <button name="nameButton" id="idButton" title="Next Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","PartColors", new {  partNumber = partNumber, page = page })'">Next Page</button>
+        }
+    }
+</div>

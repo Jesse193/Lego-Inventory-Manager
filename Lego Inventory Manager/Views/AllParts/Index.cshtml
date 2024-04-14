@@ -28,9 +28,35 @@
                 }
             </tbody>
         </table>
+        @if (Model.Previous != null)
+        {
+            @if (Model.Previous.Contains("page="))
+            {
+                int userTokenIndexStart = Model.Previous.IndexOf("users/") + "users/".Length;
+                int userTokenIndexEnd = Model.Previous.IndexOf("/all");
+                string userToken = Model.Previous.Substring(userTokenIndexStart, userTokenIndexEnd - userTokenIndexStart);
+                int previousPageIndex = Model.Previous.IndexOf("&page=");
+                int previousPageNumber = previousPageIndex + 6;
+                int previousPage = Int32.Parse(Model.Previous.Substring(previousPageNumber, 1));
+                <td><button name="nameButton" id="idButton" title="Previous Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","AllParts", new {  userToken = userToken, page = previousPage })'">Previous Page</button></td>
+
+            }
+            else
+            {
+                int userTokenIndexStart = Model.Previous.IndexOf("users/") + "users/".Length;
+                int userTokenIndexEnd = Model.Previous.IndexOf("/all");
+                string userToken = Model.Previous.Substring(userTokenIndexStart, userTokenIndexEnd - userTokenIndexStart);
+                <td><button name="nameButton" id="idButton" title="Previous Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","AllParts", new {  userToken = userToken, page = 1 })'">Previous Page</button></td>
+            }
+        }
         @if (Model.Next != null){
-            int page = Int32.Parse((Model.Next.Substring(119, 1)));
-            <td><button name="nameButton" id="idButton" title="Next Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","AllParts", new {  userToken = Model.Next.Substring(37, 64), page = page -= 1 })'">Next Page</button></td>
+            int userTokenIndexStart = Model.Next.IndexOf("users/") + "users/".Length;
+            int userTokenIndexEnd = Model.Next.IndexOf("/all");
+            string userToken = Model.Next.Substring(userTokenIndexStart, userTokenIndexEnd - userTokenIndexStart);
+            int nextPageIndex = Model.Next.IndexOf("&page=");
+            int nextPageNumber = nextPageIndex + 6;
+            int nextPage = Int32.Parse(Model.Next.Substring(nextPageNumber, 1));
+            <td><button name="nameButton" id="idButton" title="Next Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","AllParts", new {  userToken = userToken, page = nextPage })'">Next Page</button></td>
         }
     }
 </div>

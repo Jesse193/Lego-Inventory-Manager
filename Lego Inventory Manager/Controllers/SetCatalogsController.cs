@@ -13,18 +13,18 @@ namespace LegoInventoryManager.Controllers
             _legoApiService = legoApiService;
         }
 
-        public async Task<IActionResult> Index(string searchTerm)
+        public async Task<IActionResult> Index(string searchTerm, int page = 1)
         {
             SetCatalog getSets = new SetCatalog();
-            getSets = await _legoApiService.GetSets(searchTerm);
+            getSets = await _legoApiService.GetSets(searchTerm, page);
 
             return View(getSets);
         }
 
-        public async Task<IActionResult> Show(string setNumber)
+        public async Task<IActionResult> Show(string setNumber, int page = 1)
         {
             SetShow Set = new SetShow();
-            Set = await _legoApiService.SetDetails(setNumber);
+            Set = await _legoApiService.SetDetails(setNumber, page);
 
             return View(Set);
         }

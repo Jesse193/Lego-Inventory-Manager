@@ -18,6 +18,12 @@ namespace LegoInventoryManager.Models
 
         [JsonPropertyName("element_img_url")]
         public string? Image { get; set; }
+
+        [JsonPropertyName("next")]
+        public string Next { get; set; }
+
+        [JsonPropertyName("previous")]
+        public string Previous { get; set; }
     }
 
     public class ColorResults

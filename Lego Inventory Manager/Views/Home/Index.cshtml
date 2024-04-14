@@ -5,12 +5,12 @@
 }
 
 <div>
-    <h3 class="display-4">Lego Part Finder</h3>
     <center>
+        <h3 class="display-4">Search for Parts</h3>
         <form asp-controller="PartCatalogs" asp-action="Index">
             <table>
                 <tr>
-                    <td>Part Number: </td>
+                    <td>Part Number or Name: </td>
                     <td><input type="text" id="partNumber" name="partNumber" /></td>
                    
                     <td><input type="submit" value="Submit" /></td>
@@ -19,7 +19,7 @@
             <hr />
         </form>
         <h3 class="display-4">Search For Sets</h3>
-        <form asp-controller="Sets" asp-action="Index">
+        <form asp-controller="SetCatalogs" asp-action="Index">
             <table>
                 <tr>
                     <td>Set Number Or Name: </td>

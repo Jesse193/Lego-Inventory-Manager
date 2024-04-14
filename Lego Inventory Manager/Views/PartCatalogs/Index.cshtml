@@ -23,6 +23,26 @@
                 }
             </tbody>
         </table>
+        @if (Model.Previous != null)
+        {
+            @if (Model.Previous.Contains("page="))
+            {
+                int pageNumberIndexStart = Model.Previous.IndexOf("&page=") + "&page=".Length;
+                int pageNumberIndexEnd = Model.Previous.IndexOf("&search");
+                string page = Model.Previous.Substring(pageNumberIndexStart, pageNumberIndexEnd - pageNumberIndexStart);
+                int partNumberIndex = Model.Previous.IndexOf("&search=");
+                string partNumber = Model.Previous.Substring(partNumberIndex);
+                <button name="nameButton" id="idButton" title="Previous Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","PartCatalogs", new {  partNumber = partNumber, page = page })'">Previous</button>
+
+            }
+            else
+            {
+                int partNumberIndex = Model.Previous.IndexOf("&search=");
+                string partNumber = Model.Previous.Substring(partNumberIndex);
+                <button name="nameButton" id="idButton" title="Previous Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","PartCatalogs", new {  partNumber = partNumber, page = 1 })'">Previous</button>
+
+            }
+        }
         @if (Model.Next != null)
         {
             int pageNumberIndexStart = Model.Next.IndexOf("&page=") + "&page=".Length;
@@ -30,6 +50,7 @@
             string page = Model.Next.Substring(pageNumberIndexStart, pageNumberIndexEnd - pageNumberIndexStart);
             int partNumberIndex = Model.Next.IndexOf("&search=");
             string partNumber = Model.Next.Substring(partNumberIndex);
-            <td><button name="nameButton" id="idButton" title="Next Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","PartCatalogs", new {  partNumber = Model.Next.Substring(94), page = page })'">Next Page</button></td>
+            <button name="nameButton" id="idButton" title="Next Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","PartCatalogs", new {  partNumber = partNumber, page = page })'">Next Page</button>
         }
     }
+</div>

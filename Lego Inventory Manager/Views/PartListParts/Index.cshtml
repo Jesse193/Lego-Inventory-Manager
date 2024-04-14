@@ -51,6 +51,32 @@
                 </tr>
             </tbody>
         </table>
+        @if (Model.Previous != null)
+        {
+            @if (Model.Previous.Contains("page="))
+            {
+                int userTokenIndexStart = Model.Previous.IndexOf("users/") + "users/".Length;
+                int userTokenIndexEnd = Model.Previous.IndexOf("/partlists");
+                string userToken = Model.Previous.Substring(userTokenIndexStart, userTokenIndexEnd - userTokenIndexStart);
+                int listIdIndexStart = Model.Previous.IndexOf("partlists/") + "partlists/".Length;
+                int listIdIndexEnd = Model.Previous.IndexOf("/parts");
+                string listId = Model.Previous.Substring(listIdIndexStart, listIdIndexEnd - listIdIndexStart);
+                int pageIndex = Model.Previous.IndexOf("&page=");
+                int pageNumber = pageIndex + 6;
+                int page = Int32.Parse(Model.Previous.Substring(pageNumber, 1));
+                <td><button name="nameButton" id="idButton" title="Previous Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","PartListParts", new {  userToken = userToken, listId = listId, page = page })'">Previous Page</button></td>
+            }
+            else
+            {
+                int userTokenIndexStart = Model.Previous.IndexOf("users/") + "users/".Length;
+                int userTokenIndexEnd = Model.Previous.IndexOf("/partlists");
+                string userToken = Model.Previous.Substring(userTokenIndexStart, userTokenIndexEnd - userTokenIndexStart);
+                int listIdIndexStart = Model.Previous.IndexOf("partlists/") + "partlists/".Length;
+                int listIdIndexEnd = Model.Previous.IndexOf("/parts");
+                string listId = Model.Previous.Substring(listIdIndexStart, listIdIndexEnd - listIdIndexStart);
+                <td><button name="nameButton" id="idButton" title="Previous Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","PartListParts", new {  userToken = userToken, listId = listId, page = 1 })'">Previous Page</button></td>
+            }
+        }
         @if (Model.Next != null)
         {
             int userTokenIndexStart = Model.Next.IndexOf("users/") + "users/".Length;

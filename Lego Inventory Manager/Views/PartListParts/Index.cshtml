@@ -5,46 +5,45 @@
 
     @if (Model != null)
     {
+        <h3>Number Of Parts: @Html.DisplayFor(modelItem => Model.NumberParts)</h3>
         <table class="table table-bordered table-striped table-sm">
             <thead>
                 <tr>
-                    <th>Number Of Parts</th>
-                    <th>Part</th>
+                    <th>Quantity</th>
+                    <th>Part Number</th>
+                    <th>Part Name</th>
+                    <th>Color</th>
+                    <th>Image</th>
+                    <th>Edit Part</th>
+
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => Model.NumberParts)</td>
                     @foreach (var result in Model.Results)
                     {
-                        <tr>
-                            <th>Quantity</th>
-                            <th>Part Number</th>
-                            <th>Part Name</th>
-                            <th>Color</th>
-                        </tr>
                         <tr>
                             <td>@Html.DisplayFor(modelItem => result.Quantity)</td>
                             <td>@Html.DisplayFor(modelItem => result.ListPart.PartNumber)</td>
                             <td>@Html.DisplayFor(modelItem => result.ListPart.Name)</td>
                             <td>@Html.DisplayFor(modelItem => result.ListPartColor.Name)</td>
-                        </tr>
-
-                        <tr>
-                            <td>Edit Part</td>
-                            <form asp-controller="PartListParts" asp-action="Put">
-                                <td>User Token: </td>
-                                <td><input type="text" id="userToken" name="userToken" /></td>
-
-                                <td>Quantity</td>
-                                <td><input type="number" id="Quantity" name="Quantity" /></td>
-
-                                <input type="hidden" id="partNumber" name="partNumber" value="@result.ListPart.PartNumber" />
-                                <input type="hidden" id="colorId" name="colorId" value="@result.ListPartColor.ColorId" />
-                                <input type="hidden" id="listId" name="listId" value="@result.ListId" />
-
-                                <td><input type="submit" value="Submit" /></td>
-                            </form>
+                            <td><img src=@Html.DisplayFor(modelItem => result.ListPart.Image) alt="Image of Lego Part" width="200" height="200" /></td>
+                            <td>
+                                <form asp-controller="PartListParts" asp-action="Put">
+                                    <center>
+                                        <input type="text" id="userToken" name="userToken" placeholder="User Token:" />
+                                        <br>
+                                        <br />
+                                        <input type="number" id="Quantity" name="Quantity" placeholder="Quantity" />
+                                        <br>
+                                        <br />
+                                        <input type="hidden" id="partNumber" name="partNumber" value="@result.ListPart.PartNumber" />
+                                        <input type="hidden" id="colorId" name="colorId" value="@result.ListPartColor.ColorId" />
+                                        <input type="hidden" id="listId" name="listId" value="@result.ListId" />
+                                        <input type="submit" value="Submit" />
+                                    </center>
+                                </form>
+                            </td>
                         </tr>
                         <br>
                     }

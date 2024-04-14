@@ -22,24 +22,19 @@
 
 					<td>
                         <form asp-controller="PartLists" asp-action="Post">
-                            <table>
-                                <tr>
-                                    <td>User Token:</td>
-                                    <td><input type="text" id="userToken" name="userToken" /></td>
+                            <tr>
+                                <input type="text" id="userToken" name="userToken" placeholder="User Token:" />
 
-                                    <td>List ID:</td>
-                                    <td><input type="text" id="ListId" name="ListId" /></td>
+                                <input type="text" id="ListId" name="ListId" placeholder="List ID:"/>
 
-                                    <td>Quantity:</td>
-                                    <td><input type="text" id="Quantity" name="Quantity" /></td>
+                                <input type="text" id="Quantity" name="Quantity" placeholder="Quantity" />
 
-                                    <td><input type="hidden" id="partNumber" name="partNumber" value="@Model.PartColor.PartNumber" /></td>
-                                    <td><input type="hidden" id="colorId" name="ColorId" value="@Model.Color.ColorId" /></td>
+                                <input type="hidden" id="partNumber" name="partNumber" value="@Model.PartColor.PartNumber" />
+                                <input type="hidden" id="colorId" name="ColorId" value="@Model.Color.ColorId" />
 
 
-                                    <td><input type="submit" value="Submit" /></td>
-                                </tr>
-                            </table>
+                                <input type="submit" value="Submit" />
+                            </tr>
                         </form>
                     </td>
                 </tr>

@@ -8,93 +8,72 @@
     <center>
         <h3 class="display-4">Search for Parts</h3>
         <form asp-controller="PartCatalogs" asp-action="Index">
-            <table>
-                <tr>
-                    <td>Part Number or Name: </td>
-                    <td><input type="text" id="partNumber" name="partNumber" /></td>
-                   
-                    <td><input type="submit" value="Submit" /></td>
-                </tr>
-            </table>
-            <hr />
+            <center>
+               <input type="text" id="partNumber" name="partNumber" placeholder="Part Number or Name" />
+                <br>
+                <br />
+               <input type="submit" value="Submit" />
+            </center>
         </form>
         <h3 class="display-4">Search For Sets</h3>
         <form asp-controller="SetCatalogs" asp-action="Index">
-            <table>
-                <tr>
-                    <td>Set Number Or Name: </td>
-                    <td><input type="text" id="searchTerm" name="searchTerm" /></td>
-
-                    <td><input type="submit" value="Submit" /></td>
-                </tr>
-            </table>
-            <hr />
+            <center>
+                <input type="text" id="searchTerm" name="searchTerm" placeholder="Set Number Or Name" />
+                <br>
+                <br />
+                <input type="submit" value="Submit" />
+            </center>
         </form>
         <h3 class="display-4">Get Part Lists</h3>
         <form asp-controller="PartLists" asp-action="Index">
-            <table>
-                <tr>
-                    <td>User Token: </td>
-                    <td><input type="text" id="userToken" name="userToken" /></td>
-
-                    <td><input type="submit" value="Submit" /></td>
-                </tr>
-            </table>
-            <hr />
+            <center>
+                <input type="text" id="userToken" name="userToken" placeholder="User Token" />
+                <br>
+                <br />
+                <input type="submit" value="Submit" />
+            </center>
         </form>
         <h3 class="display-4">Get Set Lists</h3>
         <form asp-controller="SetLists" asp-action="Index">
-            <table>
-                <tr>
-                    <td>User Token: </td>
-                    <td><input type="text" id="userToken" name="userToken" /></td>
-
-                    <td><input type="submit" value="Submit" /></td>
-                </tr>
-            </table>
-            <hr />
+            <center>
+                <input type="text" id="userToken" name="userToken" placeholder="User Token" />
+                <br>
+                <br />
+                <input type="submit" value="Submit" />
+            </center>
         </form>
         <h3 class="display-4">Create Part List</h3>
         <form asp-controller="PartLists" asp-action="Post">
-            <table>
-                <tr>
-                    <td>User Token: </td>
-                    <td><input type="text" id="userToken" name="userToken" /></td>
-
-                    <td>New List Name: </td>
-                    <td><input type="text" id="Name" name="Name" /></td>
-
-                    <td><input type="submit" value="Submit" /></td>
-                </tr>
-            </table>
-            <hr />
-        <h3 class="display-4">Create Set List</h3>
+            <center>
+                <input type="text" id="userToken" name="userToken" placeholder="User Token" />
+                <br>
+                <br />
+                <input type="text" id="Name" name="Name" placeholder="New List Name" />
+                <br>
+                <br />
+                <input type="submit" value="Submit" />
+            </center>
         </form>
+        <h3 class="display-4">Create Set List</h3>
         <form asp-controller="SetLists" asp-action="Post">
-            <table>
-                <tr>
-                    <td>User Token: </td>
-                    <td><input type="text" id="userToken" name="userToken" /></td>
-
-                    <td>New List Name: </td>
-                    <td><input type="text" id="Name" name="Name" /></td>
-
-                    <td><input type="submit" value="Submit" /></td>
-                </tr>
-            </table>
-            <hr />
+            <center>
+                <input type="text" id="userToken" name="userToken" placeholder="User Token" />
+                <br>
+                <br />
+                <input type="text" id="Name" name="Name" placeholder="New List Name" />
+                <br>
+                <br />
+                <input type="submit" value="Submit" />
+            </center>
         </form>
         <h3 class="display-4">Get All Parts In Collection</h3>
         <form asp-controller="AllParts" asp-action="Index">
-            <table>
-                <tr>
-                    <td>User Token: </td>
-                    <td><input type="text" id="userToken" name="userToken" /></td>
-
-                    <td><input type="submit" value="Submit" /></td>
-                </tr>
-            </table>
-            <hr />
+           <center>
+               <input type="text" id="userToken" name="userToken" placeholder="User Token" />
+               <br>
+               <br />
+               <input type="submit" value="Submit" />
+           </center>
         </form>
     </center>
 </div>

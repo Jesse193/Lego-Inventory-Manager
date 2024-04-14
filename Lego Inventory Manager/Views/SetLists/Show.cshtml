@@ -20,18 +20,16 @@
             </tbody>
         </table>
         <p>Delete This List</p>
-        <p>Warning: Deleting This List Will Delete ALL Sets In The List</p>    
+        <p>Warning: Deleting This List Will Delete ALL Sets In The List</p>
         <form asp-controller="SetLists" asp-action="Delete">
-            <table>
-                <tr>
-                    <td>User Token:</td>
-                    <td><input type="text" id="userToken" name="userToken" /></td>
+            <center>
+                <input type="text" id="userToken" name="userToken" placeholder="User Token" />
+                <br>
+                <br />
+                <input type="hidden" id="listId" name="listId" value="@Model.Id" />
 
-                    <input type="hidden" id="listId" name="listId" value="@Model.Id" />
-
-                    <td><input type="submit" value="Submit" /></td>
-                </tr>
-            </table>
+                <input type="submit" value="Submit" />
+            </center>
         </form>
     }
 </div>

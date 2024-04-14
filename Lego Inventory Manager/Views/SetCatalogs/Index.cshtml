@@ -10,7 +10,6 @@
                     <th>Set Name</th>
                     <th>Year Released</th>
                     <th>Number of Parts</th>
-                    <th>@Html.DisplayFor(modelItem => Model.Next)</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,14 +42,35 @@
                 }
             </tbody>
         </table>
+        @if (Model.Previous != null)
+        {
+            @if (Model.Previous.Contains("page="))
+            {
+                int pageNumberIndexStart = Model.Previous.IndexOf("&page=") + "&page=".Length;
+                int pageNumberIndexEnd = Model.Previous.IndexOf("&search");
+                int page = Int32.Parse(Model.Previous.Substring(pageNumberIndexStart, pageNumberIndexEnd - pageNumberIndexStart));
+                int searchTermIndex = Model.Next.IndexOf("&search=");
+                int searchTermLocation = searchTermIndex + 8;
+                string searchTerm = Model.Next.Substring(searchTermLocation);
+                <button name="nameButton" id="idButton" title="Previous Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","SetCatalogs", new {  searchTerm = searchTerm, page = page })'">Previous Page</button>
+            }
+            else
+            {
+                int searchTermIndex = Model.Next.IndexOf("&search=");
+                int searchTermLocation = searchTermIndex + 8;
+                string searchTerm = Model.Next.Substring(searchTermLocation);
+                <button name="nameButton" id="idButton" title="Previous Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","SetCatalogs", new {  searchTerm = searchTerm, page = 1 })'">Previous Page</button>
+            }
+        }
         @if (Model.Next != null)
         {
-            int pageIndex = Model.Next.IndexOf("&page=");
-            int pageNumber = pageIndex + 6;
-            int page = Int32.Parse(Model.Next.Substring(pageNumber, 1));
-            int setNumberIndex = Model.Next.IndexOf("&search=");
-            string setNumber = Model.Next.Substring(setNumberIndex);
-            <button name="nameButton" id="idButton" title="Next Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","SetCatalogs", new {  setNumber = setNumber, page = page })'">Next Page</button>
+            int pageNumberIndexStart = Model.Next.IndexOf("&page=") + "&page=".Length;
+            int pageNumberIndexEnd = Model.Next.IndexOf("&search");
+            int page = Int32.Parse(Model.Next.Substring(pageNumberIndexStart, pageNumberIndexEnd - pageNumberIndexStart));
+            int searchTermIndex = Model.Next.IndexOf("&search=");
+            int searchTermLocation = searchTermIndex + 8;
+            string searchTerm = Model.Next.Substring(searchTermLocation);
+            <button name="nameButton" id="idButton" title="Next Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Index","SetCatalogs", new {  searchTerm = searchTerm, page = page })'">Next Page</button>
         }
     }
 </div>

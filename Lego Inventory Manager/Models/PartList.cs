@@ -18,6 +18,9 @@ namespace LegoInventoryManager.Models
 
         [JsonPropertyName("next")]
         public string Next { get; set; }
+
+        [JsonPropertyName("previous")]
+        public string Previous { get; set; }
     }
 
     public class Results

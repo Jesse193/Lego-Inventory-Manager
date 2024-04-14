@@ -1,46 +1,67 @@
 ﻿@model SetShow
 
-@if (Model != null)
-{
-    <table class="table table-bordered table-striped table-sm">
-        <thead>
-            <tr>
-                <th>Number of Parts</th>
-                <th>Part Number</th>
-                <th>Part Name</th>
-                <th>Part Color ID</th>
-                <th>Part Color Name</th>
-                <th>Quantity</th>
-                <th>Part Element ID</th>
-                <th>Spare Part?</th>
-            </tr>
-        </thead>
-        <tbody>
-        <td>@Html.DisplayFor(modelItem => Model.PartCount)</td>
-        @foreach (var part in Model.Results)
-        {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => part.SetPart.PartNumber)</td>
-                <td>@Html.DisplayFor(modelItem => part.SetPart.Name)</td>
-                <td><img src=@Html.DisplayFor(modelItem => part.SetPart.PartImage) alt="Image of Lego Part" /></td>
-                <td>@Html.DisplayFor(modelItem => part.SetPartColor.Id)</td>
-                <td>@Html.DisplayFor(modelItem => part.SetPartColor.Name)</td>
-                <td>@Html.DisplayFor(modelItem => part.Quantity)</td>
-                <td>@Html.DisplayFor(modelItem => part.ElementId)</td>
-                <td>@Html.DisplayFor(modelItem => part.IsSpare)</td>
-            </tr>
-            <br>
-        }
-        </tbody>
-    </table>
-    @if (Model.Next != null)
+<div>
+    @if (Model != null)
     {
-        int pageIndex = Model.Next.IndexOf("&page=");
-        int pageNumber = pageIndex + 6;
-        int page = Int32.Parse(Model.Next.Substring(pageNumber, 1));
-        int setNumberIndexStart = Model.Next.IndexOf("sets/") + "sets/".Length;
-        int setNumberIndexEnd = Model.Next.IndexOf("/parts");
-        string setNumber = Model.Next.Substring(setNumberIndexStart, setNumberIndexEnd - setNumberIndexStart);
-        <td><button name="nameButton" id="idButton" title="Next Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Show","SetCatalogs", new {  setNumber = setNumber, page = page })'">Next Page</button></td>
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>Number of Parts: @Html.DisplayFor(modelItem => Model.PartCount)</th>
+                    <th>Part Number</th>
+                    <th>Part Name</th>
+                    <th>Part Color ID</th>
+                    <th>Part Color Name</th>
+                    <th>Quantity</th>
+                    <th>Part Element ID</th>
+                    <th>Spare Part?</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var part in Model.Results)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => part.SetPart.PartNumber)</td>
+                        <td>@Html.DisplayFor(modelItem => part.SetPart.Name)</td>
+                        <td><img src=@Html.DisplayFor(modelItem => part.SetPart.PartImage) alt="Image of Lego Part" /></td>
+                        <td>@Html.DisplayFor(modelItem => part.SetPartColor.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => part.SetPartColor.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => part.Quantity)</td>
+                        <td>@Html.DisplayFor(modelItem => part.ElementId)</td>
+                        <td>@Html.DisplayFor(modelItem => part.IsSpare)</td>
+                    </tr>
+                    <br>
+                }
+            </tbody>
+        </table>
+        @if (Model.Previous != null)
+        {
+            @if (Model.Previous.Contains("page="))
+            {
+                int pageIndex = Model.Previous.IndexOf("&page=");
+                int pageNumber = pageIndex + 6;
+                int page = Int32.Parse(Model.Previous.Substring(pageNumber, 1));
+                int setNumberIndexStart = Model.Previous.IndexOf("sets/") + "sets/".Length;
+                int setNumberIndexEnd = Model.Previous.IndexOf("/parts");
+                string setNumber = Model.Previous.Substring(setNumberIndexStart, setNumberIndexEnd - setNumberIndexStart);
+                <button name="nameButton" id="idButton" title="Previous Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Show","SetCatalogs", new {  setNumber = setNumber, page = page })'">Previous Page</button>
+            }
+            else
+            {
+                int setNumberIndexStart = Model.Previous.IndexOf("sets/") + "sets/".Length;
+                int setNumberIndexEnd = Model.Previous.IndexOf("/parts");
+                string setNumber = Model.Previous.Substring(setNumberIndexStart, setNumberIndexEnd - setNumberIndexStart);
+                <button name="nameButton" id="idButton" title="Previous Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Show","SetCatalogs", new {  setNumber = setNumber, page = 1 })'">Previous Page</button>
+            }
+        }
+        @if (Model.Next != null)
+        {
+            int pageIndex = Model.Next.IndexOf("&page=");
+            int pageNumber = pageIndex + 6;
+            int page = Int32.Parse(Model.Next.Substring(pageNumber, 1));
+            int setNumberIndexStart = Model.Next.IndexOf("sets/") + "sets/".Length;
+            int setNumberIndexEnd = Model.Next.IndexOf("/parts");
+            string setNumber = Model.Next.Substring(setNumberIndexStart, setNumberIndexEnd - setNumberIndexStart);
+            <button name="nameButton" id="idButton" title="Next Page" class="btn btn-secondary" onclick="location.href='@Url.Action("Show","SetCatalogs", new {  setNumber = setNumber, page = page })'">Next Page</button>
+        }
     }
-}
+</div>
